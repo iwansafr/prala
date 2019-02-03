@@ -93,6 +93,7 @@
 	<script src="<?php echo $link_template;?>/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="<?php echo $link_template;?>/js/active.js"></script>
+	<script src="<?php echo $link_template;?>/script.js"></script>
 	<?php $this->load->view('script') ?>
 </body>
 
