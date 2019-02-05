@@ -6,6 +6,7 @@ class Prala extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('home_model');
+		$this->load->model('prala_model');
 		$this->load->helper('content');
 		$this->load->library('esg');
 		$this->load->library('ZEA/Zea');
@@ -14,7 +15,9 @@ class Prala extends CI_Controller
 	public function register()
 	{
 		$this->home_model->home();
-		$this->load->view('index');
+		$data['provinces'] = $this->prala_model->provinces();
+		$this->esg->set_esg('extra_js', base_url('templates/AdminLTE/assets/dist/js/modules/prala/script.js'));
+		$this->load->view('index', $data);
 	}
 
 	public function index()
@@ -30,5 +33,14 @@ class Prala extends CI_Controller
 	public function e()
 	{
 		$this->load->view('error');
+	}
+
+	public function regencies()
+	{
+		echo $this->prala_model->regencies();
+	}
+	public function districts()
+	{
+		echo $this->prala_model->districts();
 	}
 }

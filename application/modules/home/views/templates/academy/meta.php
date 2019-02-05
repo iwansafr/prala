@@ -57,7 +57,9 @@ if($mod['content'] == 'home/index')
 <meta content="<?php echo $image ?>" itemprop='url'/>
 <link href="<?php echo $image; ?>" rel="icon">
 <link href="<?php echo $image; ?>" rel="apple-touch-icon">
-
+<script type="text/javascript">
+    var _ID = <?php echo @intval($_GET['id'])?>;
+</script>
 <script type="text/javascript">
   var _URL = '<?php echo base_url() ?>';
 </script>

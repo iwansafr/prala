@@ -95,6 +95,7 @@
 	<script src="<?php echo $link_template;?>/js/active.js"></script>
 	<script src="<?php echo $link_template;?>/script.js"></script>
 	<?php $this->load->view('script') ?>
+	<?php $this->esg->extra_js();?>
 </body>
 
 </html>
