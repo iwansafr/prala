@@ -68,7 +68,9 @@ class Prala_model extends CI_Model
 
 	public function provinces()
 	{
-		$provinces = $this->db->query('SELECT id, name FROM provinces ORDER BY name ASC')->result_array();
+		$provinces[0][] = array('id'=>'0', 'name'=>'Pilih Provinsi');
+		$provinces[] = $this->db->query('SELECT id, name FROM provinces ORDER BY name ASC')->result_array();
+		$provinces = array_merge($provinces[0],$provinces[1]);
 		$provinces = assoc($provinces, 'id','name');
 		return $provinces;
 	}

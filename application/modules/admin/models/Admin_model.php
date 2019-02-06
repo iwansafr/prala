@@ -78,6 +78,23 @@ class Admin_model extends CI_Model
 		    'link' => base_url('admin')
 		  ),
 		  array(
+		    'title' => 'PEndaftaran Ujian',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah Pendaftar Ujian',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/register')
+		      ),
+		      array(
+		        'title' => 'Daftar Pendaftar Ujian',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/list')
+		      ),
+		    )
+		  ),
+		  array(
 		    'title' => 'Content',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
