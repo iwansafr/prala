@@ -25,44 +25,42 @@ $this->zea->setLabel('nama_ibu','Nama Lengkap Ibu');
 $this->zea->addInput('kewarganegaraan','text');
 $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
 
-$this->zea->addInput('alamat','textarea');
-$this->zea->setLabel('alamat','Alamat Lengkap');
 
 
 $this->zea->addInput('provinsi','dropdown');
 $this->zea->setOptions('provinsi', $provinces);
 $this->zea->setLabel('provinsi','Provinsi');
 
-// $regencies = $this->db->query('SELECT id, name FROM regencies')->result_array();
-// $regencies = assoc($regencies, 'id','name');
 $this->zea->addInput('kabupaten','dropdown');
-$this->zea->setOptions('kabupaten', array('none'));
+$this->zea->setOptions('kabupaten', array('Pilih Kabupaten'));
 $this->zea->setLabel('kabupaten','Kabupaten');
 
-// $districts = $this->db->query('SELECT id, name FROM districts')->result_array();
-// $districts = assoc($districts, 'id','name');
 $this->zea->addInput('kecamatan','dropdown');
-$this->zea->setOptions('kecamatan', array('none'));
+$this->zea->setOptions('kecamatan', array('Pilih Kecamatan'));
 $this->zea->setLabel('kecamatan','Kecamatan');
-$this->zea->startCollapse('alamat', 'Alamat Lengkap');
-$this->zea->endCollapse('kecamatan');
-$this->zea->setCollapse('alamat',TRUE);
+
+$this->zea->addInput('alamat','textarea');
+$this->zea->setLabel('alamat','Alamat Lengkap');
+
+$this->zea->startCollapse('provinsi', 'Alamat Lengkap');
+$this->zea->endCollapse('alamat');
+$this->zea->setCollapse('provinsi',TRUE);
 
 $this->zea->addInput('nama_sekolah','text');
 $this->zea->setLabel('nama_sekolah','Nama Sekolah');
-$this->zea->addInput('alamat_sekolah','textarea');
-$this->zea->setLabel('alamat_sekolah','Alamat Sekolah');
 $this->zea->addInput('provinsi_sekolah','dropdown');
-$this->zea->setOptions('provinsi_sekolah', array('0'=>'None'));
+$this->zea->setOptions('provinsi_sekolah', $provinces);
 $this->zea->setLabel('provinsi_sekolah','Provinsi Sekolah');
 $this->zea->addInput('kabupaten_sekolah','dropdown');
-$this->zea->setOptions('kabupaten_sekolah', array('0'=>'None'));
+$this->zea->setOptions('kabupaten_sekolah', array('Pilih Kabupaten'));
 $this->zea->setLabel('kabupaten_sekolah','Kabupaten Sekolah');
 $this->zea->addInput('kecamatan_sekolah','dropdown');
-$this->zea->setOptions('kecamatan_sekolah', array('0'=>'None'));
+$this->zea->setOptions('kecamatan_sekolah', array('Pilih Kecamatan'));
 $this->zea->setLabel('kecamatan_sekolah','Kecamatan Sekolah');
+$this->zea->addInput('alamat_sekolah','textarea');
+$this->zea->setLabel('alamat_sekolah','Alamat Sekolah');
 $this->zea->startCollapse('nama_sekolah', 'Detail Sekolah');
-$this->zea->endCollapse('kecamatan_sekolah');
+$this->zea->endCollapse('alamat_sekolah');
 $this->zea->setCollapse('nama_sekolah',TRUE);
 
 $this->zea->addInput('email','text');

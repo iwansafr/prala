@@ -13,6 +13,7 @@ class Prala_model extends CI_Model
 	public function regencies()
 	{
 		$data = array('status'=>FALSE,'msg'=>'error');
+		$this->db->order_by('name','ASC');
 		$tmp = $this->db->get('regencies')->result_array();
 		if(!empty($tmp))
 		{
@@ -40,6 +41,7 @@ class Prala_model extends CI_Model
 	public function districts()
 	{
 		$data = array('status'=>FALSE,'msg'=>'error');
+		$this->db->order_by('name','ASC');
 		$tmp = $this->db->get('districts')->result_array();
 		if(!empty($tmp))
 		{
@@ -66,7 +68,7 @@ class Prala_model extends CI_Model
 
 	public function provinces()
 	{
-		$provinces = $this->db->query('SELECT id, name FROM provinces')->result_array();
+		$provinces = $this->db->query('SELECT id, name FROM provinces ORDER BY name ASC')->result_array();
 		$provinces = assoc($provinces, 'id','name');
 		return $provinces;
 	}
