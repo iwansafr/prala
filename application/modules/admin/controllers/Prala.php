@@ -15,6 +15,7 @@ class Prala extends CI_Controller
 	public function register()
 	{
 		$data['provinces'] = $this->prala_model->provinces();
+		$data['is_prala'] = (@$_GET['t'] == md5('prala')) ? TRUE : FALSE;
 		$this->esg->set_esg('extra_js', base_url('templates/AdminLTE/assets/dist/js/modules/prala/script.js'));
 		$this->load->view('index', $data);
 	}
@@ -26,7 +27,8 @@ class Prala extends CI_Controller
 
 	public function list()
 	{
-		$this->load->view('index');
+		$data['is_prala'] = (@$_GET['t'] == md5('prala')) ? TRUE : FALSE;
+		$this->load->view('index', $data);
 	}
 	public function e()
 	{

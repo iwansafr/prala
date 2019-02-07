@@ -25,8 +25,6 @@ $this->zea->setLabel('nama_ibu','Nama Lengkap Ibu');
 $this->zea->addInput('kewarganegaraan','text');
 $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
 
-
-
 $this->zea->addInput('provinsi','dropdown');
 $this->zea->setOptions('provinsi', $provinces);
 $this->zea->setLabel('provinsi','Provinsi');
@@ -121,33 +119,40 @@ $this->zea->addInput('sert_arpa','file');
 $this->zea->setAccept('sert_arpa', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('sert_arpa','multiple');
 $this->zea->setLabel('sert_arpa','Sertifikat ARPA');
+
 $this->zea->addInput('bukti_pembayaran','file');
 $this->zea->setAccept('bukti_pembayaran', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('bukti_pembayaran','multiple');
 $this->zea->setLabel('bukti_pembayaran','Bukti Lunas Pembayaran');
-$this->zea->addInput('surat_orang_tua','file');
-$this->zea->setAccept('surat_orang_tua', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('surat_orang_tua','multiple');
-$this->zea->setLabel('surat_orang_tua','Surat Pengantar Orang Tua bermaterai');
-$this->zea->addInput('surat_prala','file');
-$this->zea->setAccept('surat_prala', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('surat_prala','multiple');
-$this->zea->setLabel('surat_prala','Surat Ijin Prala');
-$this->zea->addInput('sert_medical','file');
-$this->zea->setAccept('sert_medical', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('sert_medical','multiple');
-$this->zea->setLabel('sert_medical','Medical Sertifikat');
-$this->zea->addInput('asuransi','file');
-$this->zea->setAccept('asuransi', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('asuransi','multiple');
-$this->zea->setLabel('asuransi','Asuransi');
-$this->zea->addInput('ism_code','file');
-$this->zea->setAccept('ism_code', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('ism_code','multiple');
-$this->zea->setLabel('ism_code','ISM CODE');
-$this->zea->addInput('pendaftaran_prala','file');
-$this->zea->setAccept('pendaftaran_prala', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('pendaftaran_prala','multiple');
-$this->zea->setLabel('pendaftaran_prala','Pendaftaran Prala');
+
+if($is_prala && (is_admin() || is_root()))
+{
+	$this->zea->addInput('surat_orang_tua','file');
+	$this->zea->setAccept('surat_orang_tua', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('surat_orang_tua','multiple');
+	$this->zea->setLabel('surat_orang_tua','Surat Pengantar Orang Tua bermaterai');
+	$this->zea->addInput('surat_prala','file');
+	$this->zea->setAccept('surat_prala', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('surat_prala','multiple');
+	$this->zea->setLabel('surat_prala','Surat Ijin Prala');
+	$this->zea->addInput('sert_medical','file');
+	$this->zea->setAccept('sert_medical', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('sert_medical','multiple');
+	$this->zea->setLabel('sert_medical','Medical Sertifikat');
+	$this->zea->addInput('asuransi','file');
+	$this->zea->setAccept('asuransi', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('asuransi','multiple');
+	$this->zea->setLabel('asuransi','Asuransi');
+	$this->zea->addInput('ism_code','file');
+	$this->zea->setAccept('ism_code', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('ism_code','multiple');
+	$this->zea->setLabel('ism_code','ISM CODE');
+	$this->zea->addInput('pendaftaran_prala','file');
+	$this->zea->setAccept('pendaftaran_prala', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('pendaftaran_prala','multiple');
+	$this->zea->setLabel('pendaftaran_prala','Pendaftaran Prala');
+	$this->zea->addInput('status','hidden');
+	$this->zea->setValue('status','2');
+}
 
 $this->zea->form();
