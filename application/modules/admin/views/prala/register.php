@@ -6,6 +6,12 @@ $this->zea->setId(@intval($_GET['id']));
 $this->zea->setEditStatus(FALSE);
 $this->zea->setHeading('Pendaftaran Ujian');
 
+if(!empty(@intval($_GET['id'])))
+{
+	$this->zea->addInput('no_registration','plaintext');
+	$this->zea->setLabel('no_registration','No Registration');
+}
+
 $this->zea->addInput('kode_pelaut','text');
 $this->zea->setLabel('kode_pelaut','Kode Pelaut');
 $this->zea->addInput('nama','text');

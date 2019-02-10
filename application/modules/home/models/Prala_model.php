@@ -75,4 +75,32 @@ class Prala_model extends CI_Model
 		return $provinces;
 	}
 
+	public function prala_save()
+	{
+		$last_id = $this->zea->get_insert_id();
+		$id = $this->input->get('id');
+		if(!empty($last_id) || !empty($id))
+		{
+		  $last_id = !empty($id) ? $id : $last_id;
+		  if(!empty($_POST))
+		  {
+		    $post = array();
+		    
+		    $str   = 'RPR-'.date('Y').'-';
+				$zero  = 3;
+				$l_id  = strlen($last_id);
+				$zero  = $zero - $l_id;
+				for($i = 0;$i<$zero;$i++)
+				{
+					$str .= '0';
+				}
+				$str .= $last_id;
+		    $post['no_registration'] = $str;
+		    if(!empty($post))
+		    {
+		      $this->zea->set_data('prala', $last_id, $post);
+		    }
+		  }
+		}
+	}
 }
