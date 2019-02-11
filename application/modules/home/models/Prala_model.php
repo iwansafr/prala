@@ -10,6 +10,16 @@ class Prala_model extends CI_Model
 		$this->load->model('esg_model');
 	}
 	
+	public function get_prala($reg_id)
+	{
+		$data = array();
+		if(!empty($reg_id))
+		{
+			$data = $this->db->query('SELECT * FROM prala WHERE no_registration = ? LIMIT 1', $reg_id)->row_array();
+		}
+		return $data;
+	}
+
 	public function regencies()
 	{
 		$data = array('status'=>FALSE,'msg'=>'error');

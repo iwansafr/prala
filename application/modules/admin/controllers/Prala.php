@@ -14,7 +14,8 @@ class Prala extends CI_Controller
 
 	public function pendidikan($view)
 	{
-		$this->load->view('index', array('type'=>$view));
+		$data = $this->prala_model->get_prala(@$_GET['reg_id']);
+		$this->load->view('index', array('type'=>$view,'data'=>$data));
 	}
 
 	public function register()
