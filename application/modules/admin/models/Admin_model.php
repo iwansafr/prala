@@ -112,6 +112,28 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
+		    'title' => 'Status Pendidikan',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah Status Pendidikan',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/pendidikan/edit')
+		      ),
+		      array(
+		        'title' => 'Data Status Pendidikan',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/pendidikan/list')
+		      ),
+		      array(
+		        'title' => 'Program Studi',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/prodi')
+		      ),
+		    )
+		  ),
+		  array(
 		    'title' => 'Content',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),

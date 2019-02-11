@@ -12,6 +12,11 @@ class Prala extends CI_Controller
 		$this->esg_model->init();
 	}
 
+	public function pendidikan($view)
+	{
+		$this->load->view('index', array('type'=>$view));
+	}
+
 	public function register()
 	{
 		$data['provinces'] = $this->prala_model->provinces();
@@ -19,6 +24,11 @@ class Prala extends CI_Controller
 		$this->esg->set_esg('extra_js', base_url('templates/AdminLTE/assets/dist/js/modules/prala/script.js'));
 		$this->load->view('index', $data);
 		$this->prala_model->prala_save();
+	}
+
+	public function prodi()
+	{
+		$this->load->view('index');
 	}
 
 	public function index()
