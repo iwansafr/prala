@@ -278,28 +278,31 @@ class Zea extends CI_Model
 		{
 			foreach ($this->input as $key => $value)
 			{
-				if($value['text'] == $field)
+				if($value['type'] == 'dropdown')
 				{
-					$this->db->select($index);
-					$this->db->select($label);
-					$this->db->from($table);
-					if(!empty($ex))
+					if($value['text'] == $field)
 					{
-						$this->db->where($ex);
-					}
-					$data = $this->db->get()->result_array();
-					$options    = array();
-					$options[0] = 'None';
-					if(!empty($data))
-					{
-						foreach ($data as $dkey => $dvalue)
+						$this->db->select($index);
+						$this->db->select($label);
+						$this->db->from($table);
+						if(!empty($ex))
 						{
-							$dvalue[$index] = $dvalue[$index] == 0 ? '': $dvalue[$index];
-							$options[$dvalue[$index]] = $dvalue[$label];
+							$this->db->where($ex);
 						}
-						$this->options[$field] = $options;
-					}else{
-						$this->options[$field] = $options;
+						$data = $this->db->get()->result_array();
+						$options    = array();
+						$options[0] = 'None';
+						if(!empty($data))
+						{
+							foreach ($data as $dkey => $dvalue)
+							{
+								$dvalue[$index] = $dvalue[$index] == 0 ? '': $dvalue[$index];
+								$options[$dvalue[$index]] = $dvalue[$label];
+							}
+							$this->options[$field] = $options;
+						}else{
+							$this->options[$field] = $options;
+						}
 					}
 				}
 			}
@@ -914,8 +917,7 @@ class Zea extends CI_Model
 			}
 			if(!empty($this->where))
 			{
-				$where .= $this->where;
-				$sql .= $where;
+				$sql .= $this->where;
 			}
 			$num_rows = $this->db->query($sql,$bind)->num_rows();
 
