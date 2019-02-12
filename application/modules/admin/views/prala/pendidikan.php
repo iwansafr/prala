@@ -7,6 +7,9 @@ switch ($type) {
 	case 'list':
 		$this->load->view('pendidikan_list');
 		break;	
+	case 'detail':
+		$this->load->view('pendidikan_detail');
+		break;		
 	
 	default:
 		$this->load->view('pendidikan_list');

@@ -18,6 +18,7 @@ class Zea extends CI_Model
 	var $init          = '';
 	var $heading       = '';
 	var $edit_status   = true;
+	var $numbering     = FALSE;
 	var $paramname     = '';
 	var $where         = '';
 	var $encrypt       = TRUE;
@@ -225,6 +226,14 @@ class Zea extends CI_Model
 		if(is_bool($edit_status))
 		{
 			$this->edit_status = $edit_status;
+		}
+	}
+
+	public function setNumbering($numbering = true)
+	{
+		if(is_bool($numbering))
+		{
+			$this->numbering = $numbering;
 		}
 	}
 
@@ -1171,6 +1180,10 @@ class Zea extends CI_Model
 										<tbody>
 											<tr>
 												<?php
+												if(!empty($this->numbering))
+												{
+													echo '<th>No</th>';
+												}
 												foreach ($this->input as $key => $value)
 												{
 													if(empty($data))
@@ -1232,6 +1245,7 @@ class Zea extends CI_Model
 											<?php
 											if(!empty($data))
 											{
+												$i = 1;
 												foreach ($data as $dkey => $dvalue)
 												{
 													if(!empty($dvalue['id']))
@@ -1239,6 +1253,11 @@ class Zea extends CI_Model
 														?>
 														<tr data-id="<?php echo $dvalue['id'] ?>">
 															<?php
+															if(!empty($this->numbering))
+															{
+																echo '<td>'.$i.'</td>';
+																$i++;
+															}
 															foreach ($this->input as $ikey => $ivalue)
 															{
 																$field    = !empty($ivalue['text']) ? $ivalue['text'] : '';

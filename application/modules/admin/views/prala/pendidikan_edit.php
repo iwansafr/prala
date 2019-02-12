@@ -15,7 +15,7 @@
 </div>
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!empty($_GET['reg_id']))
+if(!empty($_GET['reg_id']) || !empty($_GET['id']))
 {
 	?>
 	<div class="panel panel-default">
@@ -52,7 +52,8 @@ if(!empty($_GET['reg_id']))
 	$form = new zea();
 	$form->init('edit');
 	$form->setTable('prala_pendidikan');
-	$form->setHeading('Tambah Status Pendidikan');
+	$title = empty($_GET['id']) ? 'Tambah' : 'Edit';
+	$form->setHeading($title.' Status Pendidikan');
 	$form->setEditStatus(FALSE);
 	$form->setId(@intval($_GET['id']));
 	$form->addInput('prodi_id','dropdown');

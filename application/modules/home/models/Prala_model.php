@@ -10,12 +10,32 @@ class Prala_model extends CI_Model
 		$this->load->model('esg_model');
 	}
 	
+	public function get_prodi($id)
+	{
+		$data = array();
+		if(!empty($id))
+		{
+			$data = $this->db->query('SELECT * FROM prodi WHERE id = ? LIMIT 1', $id)->row_array();
+		}
+		return $data;	
+	}
+
+	public function get_pendidikan($prala_id)
+	{
+		$data = array();
+		if(!empty($prala_id))
+		{
+			$data = $this->db->query('SELECT * FROM prala_pendidikan WHERE prala_id = ? LIMIT 1', $prala_id)->row_array();
+		}
+		return $data;
+	}
+
 	public function get_prala($reg_id)
 	{
 		$data = array();
 		if(!empty($reg_id))
 		{
-			$data = $this->db->query('SELECT * FROM prala WHERE no_registration = ? LIMIT 1', $reg_id)->row_array();
+			$data = $this->db->query('SELECT * FROM prala WHERE no_registration = ? OR id = ? LIMIT 1', array($reg_id,$reg_id))->row_array();
 		}
 		return $data;
 	}
