@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3">
 			<form action="" method="get">
@@ -6,7 +6,7 @@
 					<label for="">Cari Peserta</label>
 					<div class="form-inline">
 						<input type="text" name="reg_id" class="form-control" value="<?php echo @$_GET['reg_id'] ?>" placeholder="no registration">
-						<input type="submit" class="btn btn-default" value="cari">
+						<button class="btn btn-default"><i class="fa fa-search"></i></button>
 					</div>
 				</div>
 			</form>

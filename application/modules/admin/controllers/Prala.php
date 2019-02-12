@@ -26,6 +26,29 @@ class Prala extends CI_Controller
 		$this->load->view('index', array('type'=>$view,'data'=>$data));
 	}
 
+	public function location_list()
+	{
+		$this->load->view('index');
+	}
+	public function location_detail()
+	{
+		$data = array();
+		if(!empty($_GET['reg_id']))
+		{
+			$data = $this->prala_model->get_prala(@$_GET['reg_id']);
+		}
+		$this->load->view('index', array('data'=>$data));
+	}
+	public function location_edit()
+	{
+		$data = array();
+		if(!empty($_GET['reg_id']))
+		{
+			$data = $this->prala_model->get_prala(@$_GET['reg_id']);
+		}
+		$this->load->view('index', array('data'=>$data));
+	}
+
 	public function register()
 	{
 		$data['provinces'] = $this->prala_model->provinces();

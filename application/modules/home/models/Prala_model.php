@@ -25,7 +25,31 @@ class Prala_model extends CI_Model
 		$data = array();
 		if(!empty($prala_id))
 		{
-			$data = $this->db->query('SELECT * FROM prala_pendidikan WHERE prala_id = ? LIMIT 1', $prala_id)->row_array();
+			$data = $this->db->query('SELECT * FROM prala_pendidikan WHERE prala_id = ? ORDER BY id DESC LIMIT 1', $prala_id)->row_array();
+		}
+		return $data;
+	}
+
+	public function get_prala_location($pendidikan_id)
+	{
+		$data = array();
+		if(!empty($pendidikan_id))
+		{
+			$data['location'] = $this->db->query('SELECT * FROM prala_location WHERE prala_pendidikan_id = ? ORDER BY id DESC LIMIT 1', $pendidikan_id)->row_array();
+			if(empty($data))
+			{
+				$insert = array(
+					'prala_pendidikan_id' => $pendidikan_id
+				);
+				// for($i=1;$i<13;$i++){
+				// 	$insert['bulan_'.$i] = json_encode(array('latitude'=>'','longitude'=>'','tanggal'=>''));
+				// }
+				$this->db->insert('prala_location', $insert);
+			}
+			$tmp = $this->db->query('SELECT * FROM prala_location_bulan WHERE name LIKE ? ', array('location_'.$data['location']['id'].'_%'))->result_array();
+			foreach($tmp AS $key => $value){
+				$data['bulan'][$value['name']] = $value;
+			}
 		}
 		return $data;
 	}

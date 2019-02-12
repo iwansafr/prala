@@ -134,6 +134,23 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
+		    'title' => 'Laporan',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah Laporan Location',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/location_edit')
+		      ),
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list')
+		      ),
+		    )
+		  ),
+		  array(
 		    'title' => 'Content',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
