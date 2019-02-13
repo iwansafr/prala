@@ -1,8 +1,28 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+if($is_prala || !empty($_GET['reg_id'])){
+	?>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<form action="" method="get">
+					<div class="form-group">
+						<label for="">Cari Peserta</label>
+						<div class="form-inline">
+							<input type="text" name="reg_id" class="form-control" value="<?php echo @$_GET['reg_id'] ?>" placeholder="no registration">
+							<button class="btn btn-default"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<?php
+	$data = $this->prala_model->get_prala(@$_GET['reg_id']);
+}
+$id = !empty($_GET['reg_id']) ? $data['id'] : @intval($_GET['id']);
 $this->zea->init('edit');
 $this->zea->setTable('prala');
-$this->zea->setId(@intval($_GET['id']));
+$this->zea->setId($id);
 $this->zea->setEditStatus(FALSE);
 $this->zea->setHeading('Pendaftaran Ujian');
 
@@ -131,7 +151,7 @@ $this->zea->setAccept('bukti_pembayaran', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('bukti_pembayaran','multiple');
 $this->zea->setLabel('bukti_pembayaran','Bukti Lunas Pembayaran');
 
-if($is_prala && (is_admin() || is_root()))
+if(($is_prala && (is_admin() || is_root())) || !empty($_GET['reg_id']))
 {
 	$this->zea->addInput('surat_orang_tua','gallery');
 	$this->zea->setAccept('surat_orang_tua', '.jpg,.jpeg,.png');

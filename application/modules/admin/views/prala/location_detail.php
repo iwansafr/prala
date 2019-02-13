@@ -73,7 +73,7 @@ $prala_location = $this->prala_model->get_prala_location($pendidikan['id']);
 			<div class="col-md-4">
 				<div class="box">
 					<div class="box-header">
-						<a href="<?php echo base_url('admin/prala/location_edit/?id='.$prala_location['location']['id'].'&bulan='.$i) ?>"><i class="fa fa-plus-circle"></i></a>
+						<a href="<?php echo base_url('admin/prala/location_edit/?id=').$prala_location['location']['id'].'&bulan='.$i.'&r_id='.$_GET['reg_id'];?>" class="btn btn-default btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
 					</div>
 					<div class="box-body table-responsive no-padding">
 					    <table class="table table-bordered table-hover table-striped" table_name="prala_location">
