@@ -4,7 +4,7 @@ $this->zea->init('roll');
 $this->zea->setTable('prala');
 $this->zea->search();
 $this->zea->setEditStatus(FALSE);
-$this->zea->setHeading('Daftar Pendaftar Ujian');
+$this->zea->setHeading('Daftar Pendaftar Ujian <a href="'.base_url('admin/prala/list_report?t=excel').'" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i></a><a href="'.base_url('admin/prala/list_report?t=pdf').'" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-print"></i> / <i class="fa fa-file-pdf-o"></i></a>');
 
 $this->zea->addInput('id','plaintext');
 $this->zea->addInput('kode_pelaut','plaintext');

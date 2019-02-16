@@ -73,6 +73,12 @@ class Prala extends CI_Controller
 		$data['is_prala'] = (@$_GET['t'] == md5('prala')) ? TRUE : FALSE;
 		$this->load->view('index', $data);
 	}
+	public function list_report()
+	{
+		$data['is_prala'] = (@$_GET['t'] == md5('prala') && @$_GET['f'] == 'pdf') ? TRUE : FALSE;
+		$data['data'] = $this->prala_model->get_all_prala();
+		$this->load->view('prala/list_report', $data);
+	}
 	public function e()
 	{
 		$this->load->view('error');

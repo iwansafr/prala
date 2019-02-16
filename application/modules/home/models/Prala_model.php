@@ -64,6 +64,11 @@ class Prala_model extends CI_Model
 		return $data;
 	}
 
+	public function get_all_prala()
+	{
+		return $this->db->get_where('prala','status = 2')->result_array();
+	}
+
 	public function regencies()
 	{
 		$data = array('status'=>FALSE,'msg'=>'error');
