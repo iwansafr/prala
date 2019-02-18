@@ -126,6 +126,25 @@ class Menu_model extends CI_Model
 		return $data;
 	}
 
+	public function del_menu($id = 0)
+	{
+		if(!empty($id))
+		{
+			$this->db->select('id');
+			$data = $this->db->get_where('menu','par_id = '.$id)->result_array();
+			if(!empty($data))
+			{
+				$ids = array();
+				foreach ($data as $key => $value) 
+				{
+					call_user_func(array('menu_model', __FUNCTION__), $value['id']);
+					$ids[] = $value['id'];
+				}
+				$this->zea->del_data('menu', $ids);
+			}	
+		}
+	}
+
 	public function template()
 	{
 		$q = $this->db->field_exists('tpl','menu');
