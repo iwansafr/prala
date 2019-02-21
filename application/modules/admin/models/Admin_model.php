@@ -78,6 +78,77 @@ class Admin_model extends CI_Model
 		    'link' => base_url('admin')
 		  ),
 		  array(
+		    'title' => 'Menu',
+		    'icon' => 'fa-list',
+		    'link' => base_url('admin/menu/list'),
+		    'list' => array(
+		    	array(
+		        'title' => 'Add Menu',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/menu/edit')
+		      ),
+		      array(
+		        'title' => 'Menu List',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/menu/list')
+		      ),
+		      array(
+		        'title' => 'Menu Position',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/menu/position')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Content',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		    	array(
+		        'title' => 'Category',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/content/category')
+		      ),
+		      array(
+		        'title' => 'Add Content',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/content/edit')
+		      ),
+		      array(
+		        'title' => 'Content List',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/content/list')
+		      ),
+		      array(
+		        'title' => 'Tag',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/content/tag')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Status Pendidikan',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah Status Pendidikan',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/pendidikan/edit')
+		      ),
+		      array(
+		        'title' => 'Data Status Pendidikan',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/pendidikan/list')
+		      ),
+		      array(
+		        'title' => 'Program Studi',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/prodi')
+		      ),
+		    )
+		  ),
+		  array(
 		    'title' => 'Pendaftaran Ujian',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
@@ -112,28 +183,6 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
-		    'title' => 'Status Pendidikan',
-		    'icon' => 'fa-file-alt',
-		    'link' => base_url('admin/content/'),
-		    'list' => array(
-		      array(
-		        'title' => 'Tambah Status Pendidikan',
-		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/pendidikan/edit')
-		      ),
-		      array(
-		        'title' => 'Data Status Pendidikan',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/pendidikan/list')
-		      ),
-		      array(
-		        'title' => 'Program Studi',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/prodi')
-		      ),
-		    )
-		  ),
-		  array(
 		    'title' => 'Laporan',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/prala/'),
@@ -142,33 +191,6 @@ class Admin_model extends CI_Model
 		        'title' => 'Data Laporan Location',
 		        'icon' => 'fa-list',
 		        'link' => base_url('admin/prala/location_list')
-		      ),
-		    )
-		  ),
-		  array(
-		    'title' => 'Content',
-		    'icon' => 'fa-file-alt',
-		    'link' => base_url('admin/content/'),
-		    'list' => array(
-		    	array(
-		        'title' => 'Category',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/content/category')
-		      ),
-		      array(
-		        'title' => 'Add Content',
-		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/content/edit')
-		      ),
-		      array(
-		        'title' => 'Content List',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/content/list')
-		      ),
-		      array(
-		        'title' => 'Tag',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/content/tag')
 		      ),
 		    )
 		  ),
@@ -191,28 +213,6 @@ class Admin_model extends CI_Model
 		        'title' => 'User Role',
 		        'icon' => 'fa-dot-circle',
 		        'link' => base_url('admin/user/role'),
-		      ),
-		    )
-		  ),
-		  array(
-		    'title' => 'Menu',
-		    'icon' => 'fa-list',
-		    'link' => base_url('admin/menu/list'),
-		    'list' => array(
-		    	array(
-		        'title' => 'Add Menu',
-		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/menu/edit')
-		      ),
-		      array(
-		        'title' => 'Menu List',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/menu/list')
-		      ),
-		      array(
-		        'title' => 'Menu Position',
-		        'icon' => 'fa-list',
-		        'link' => base_url('admin/menu/position')
 		      ),
 		    )
 		  ),

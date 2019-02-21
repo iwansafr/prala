@@ -39,6 +39,23 @@ class Prala extends CI_Controller
 		}
 		$this->load->view('index', array('data'=>$data));
 	}
+	public function location_detail_report()
+	{
+		$data = array();
+		if(!empty($_GET['reg_id']))
+		{
+			$data = $this->prala_model->get_prala(@$_GET['reg_id']);
+		}
+		$this->load->view('prala/location_detail', array('data'=>$data));
+		if(@$_GET['t'] == 'pdf')
+		{
+			?>
+			<script type="text/javascript">
+				window.print();
+			</script>
+			<?php
+		}
+	}
 	public function location_edit()
 	{
 		$data = array();
@@ -77,6 +94,7 @@ class Prala extends CI_Controller
 	{
 		$data['is_prala'] = (@$_GET['t'] == md5('prala') && @$_GET['f'] == 'pdf') ? TRUE : FALSE;
 		$data['data'] = $this->prala_model->get_all_prala();
+		$this->esg->set_esg('extra_css', base_url('templates/AdminLTE/assets/bootstrap/css/bootstrap.min.css'));
 		$this->load->view('prala/list_report', $data);
 	}
 	public function e()

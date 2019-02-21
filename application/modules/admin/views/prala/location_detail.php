@@ -5,10 +5,23 @@ $kelamin = array('Perempuan','Laki-laki');
 $pendidikan = $this->prala_model->get_pendidikan($data['id']);
 $prodi = $this->prala_model->get_prodi($pendidikan['prodi_id']);
 $prala_location = $this->prala_model->get_prala_location($pendidikan['id']);
+if(!empty(@$_GET['t']=='pdf'))
+{
+	// header("Content-type:application/pdf; charset=utf-8");
+	// header("Content-Disposition:attachment;filename='calon peserta.pdf'");
+}else if(@$_GET['t']=='excel'){
+	header("Content-Type: application/vnd.ms-excel; charset=utf-8");
+	header("Content-type: application/x-msexcel; charset=utf-8");
+	header("Content-Disposition: attachment; filename=location detail.xls");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header("Cache-Control: private",false);
+}
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		profile
+		<a href="<?php echo base_url('admin/prala/location_detail_report?reg_id='.@($_GET['reg_id']).'&t=excel')?>" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i></a><a href="<?php echo base_url('admin/prala/location_detail_report?reg_id='.@($_GET['reg_id']).'&t=pdf')?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-print"></i> / <i class="fa fa-file-pdf-o"></i></a>
 	</div>
 	<div class="panel-body">
 		<div class="col-md-2">
