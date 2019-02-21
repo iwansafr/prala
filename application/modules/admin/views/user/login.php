@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>esoftgreat | Log in</title>
+  <title><?php echo @$this->esg->get_config('site')['title'] ?> | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -35,7 +35,7 @@
   ?>
 <div class="login-box">
   <div class="login-logo">
-    <img src="<?php echo base_url('images/logo.png') ?>" height="50">
+    <img src="<?php echo image_module('logo', @$this->esg->get_config('logo')['image']) ?>" height="50">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body" style="background: black;">
