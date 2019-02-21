@@ -32,8 +32,8 @@
 		?>
 	</div>
 </div>
-<div class="calling-info">
+<!-- <div class="calling-info">
 	<div class="call-center">
 		<a href="tel:<?php echo @$meta['contact']['phone'] ?>"><i class="icon-telephone-2"></i> <span><?php echo @$meta['contact']['phone'] ?></span></a>
 	</div>
-</div>
+</div> -->
