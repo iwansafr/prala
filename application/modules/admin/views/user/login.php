@@ -35,7 +35,7 @@
   ?>
 <div class="login-box">
   <div class="login-logo">
-    <img src="<?php echo image_module('logo', @$this->esg->get_config('logo')['image']) ?>" height="50">
+    <img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_config('logo')['image']) ?>" height="50">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body" style="background: black;">
