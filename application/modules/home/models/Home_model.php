@@ -114,21 +114,29 @@ class Home_model extends CI_Model
 		if(!empty($data['content']))
 		{
 			$tmp_data = $this->db->query('SELECT * FROM menu WHERE position_id = ? AND publish = 1 ORDER BY sort_order', @intval($data['content']))->result_array();
+			$position_name = $this->db->query('SELECT title FROM menu_position WHERE id = ?', @intval($data['content']))->row_array();
+			$position_name = @$position_name['title'];
 			if(!empty($tmp_data))
 			{
+				// $tmp_data[0]['position_name'] = $position_name;
 				$output = array();
 				$data = array();
 				$b_data = array();
 				foreach ($tmp_data as $tmkey => $tmvalue)
 				{
 					$b_data[$tmvalue['id']] = $tmvalue;
+					$b_data[$tmvalue['id']]['position_name'] = $position_name;
 				}
 				foreach ($b_data as $tkey => $tvalue)
 				{
 					if($tvalue['par_id'] == 0)
 					{
 						$data[$tvalue['id']] = $tvalue;
-					}else if($tvalue['par_id'] > 0)
+					}
+				}
+				foreach ($b_data as $tkey => $tvalue)
+				{
+					if($tvalue['par_id'] > 0)
 					{
 						if(!empty($data[$tvalue['par_id']]))
 						{
@@ -136,7 +144,7 @@ class Home_model extends CI_Model
 						}else if(!empty($b_data[$tvalue['par_id']]))
 						{
 							$id = $b_data[$tvalue['par_id']]['par_id'];
-							$data[$id]['child'][$tvalue['par_id']]['child'][$tvalue['id']]  = $tvalue;
+							$data[$id]['child'][$tvalue['id']]  = $tvalue;
 						}
 					}
 				}
