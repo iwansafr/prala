@@ -15,11 +15,11 @@
 			<ul>
 				<?php foreach ($home['menu_top'] as $key => $value): ?>
 					<?php if (empty($value['child'])): ?>
-						<li><a href="<?php echo menu_link($value['link']) ?>"><?php echo $value['title'] ?></a></li>
+						<li><a href="<?php echo menu_link(@$value['link']) ?>"><?php echo @$value['title'] ?></a></li>
 					<?php else: ?>
-						<li><a href="#"><?php echo $value['title'] ?></a>
+						<li><a href="#"><?php echo @$value['title'] ?></a>
 						<ul class="dropdown">
-							<?php foreach ($value['child'] as $ckey => $cvalue): ?>
+							<?php foreach (@$value['child'] as $ckey => $cvalue): ?>
 								<li><a href="<?php echo menu_link($cvalue['link']) ?>"><?php echo @$cvalue['title'] ?></a></li>
 							<?php endforeach ?>
 						</ul>
