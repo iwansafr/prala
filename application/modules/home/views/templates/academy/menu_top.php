@@ -20,7 +20,7 @@
 						<li><a href="#"><?php echo @$value['title'] ?></a>
 						<ul class="dropdown">
 							<?php foreach (@$value['child'] as $ckey => $cvalue): ?>
-								<li><a href="<?php echo menu_link($cvalue['link']) ?>"><?php echo @$cvalue['title'] ?></a></li>
+								<li><a href="<?php echo menu_link(@$cvalue['link']) ?>"><?php echo @$cvalue['title'] ?></a></li>
 							<?php endforeach ?>
 						</ul>
 					<?php endif ?>
