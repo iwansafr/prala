@@ -127,17 +127,17 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
-		    'title' => 'Status Pendidikan',
+		    'title' => 'Status Prala Nautika',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
 		    'list' => array(
 		      array(
-		        'title' => 'Tambah Status Pendidikan',
+		        'title' => 'Tambah Status Prala Nautika',
 		        'icon' => 'fa-pencil-alt',
 		        'link' => base_url('admin/prala/pendidikan/edit')
 		      ),
 		      array(
-		        'title' => 'Data Status Pendidikan',
+		        'title' => 'Data Status Prala Nautika',
 		        'icon' => 'fa-list',
 		        'link' => base_url('admin/prala/pendidikan/list')
 		      ),
@@ -149,24 +149,29 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
-		    'title' => 'Pendaftaran Ujian',
+		    'title' => 'Status Prala Teknika',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
 		    'list' => array(
 		      array(
-		        'title' => 'Tambah Pendaftar Ujian',
+		        'title' => 'Tambah Status Prala Teknika',
 		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/register')
+		        'link' => base_url('admin/prala/pendidikan/edit')
 		      ),
 		      array(
-		        'title' => 'Daftar Pendaftar Ujian',
+		        'title' => 'Data Status Prala Teknika',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/list')
+		        'link' => base_url('admin/prala/pendidikan/list')
+		      ),
+		      array(
+		        'title' => 'Program Studi',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/prodi')
 		      ),
 		    )
 		  ),
 		  array(
-		    'title' => 'Pendaftaran Prala',
+		    'title' => 'Daftar Ulang Pra Prala',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/content/'),
 		    'list' => array(
@@ -183,7 +188,36 @@ class Admin_model extends CI_Model
 		    )
 		  ),
 		  array(
-		    'title' => 'Laporan',
+		    'title' => 'Daftar Ulang Paska Prala',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah Pendaftar Paska Prala',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/register?t='.md5('prala'))
+		      ),
+		      array(
+		        'title' => 'Daftar Pendaftar Prala',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/list?t='.md5('prala'))
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Nautika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Teknika',
 		    'icon' => 'fa-file-alt',
 		    'link' => base_url('admin/prala/'),
 		    'list' => array(
