@@ -34,6 +34,10 @@ $prodi = $this->prala_model->get_prodi($pendidikan['prodi_id']);
 							<td><?php echo $data['tgl_lahir'] ?></td>
 						</tr>
 						<tr>
+							<td>Asal Sekolah</td>
+							<td><?php echo $data['nama_sekolah'] ?></td>
+						</tr>
+						<tr>
 							<td>Program Studi</td>
 							<td><?php echo $prodi['title'] ?></td>
 						</tr>
