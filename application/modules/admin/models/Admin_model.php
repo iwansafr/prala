@@ -176,14 +176,14 @@ class Admin_model extends CI_Model
 		    'link' => base_url('admin/content/'),
 		    'list' => array(
 		      array(
-		        'title' => 'Tambah Pendaftar Prala',
+		        'title' => 'Tambah DU Pra Prala',
 		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/register?t='.md5('prala'))
+		        'link' => base_url('admin/prala/register')
 		      ),
 		      array(
-		        'title' => 'Daftar Pendaftar Prala',
+		        'title' => 'Data DU Pra Prala',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/list?t='.md5('prala'))
+		        'link' => base_url('admin/prala/list')
 		      ),
 		    )
 		  ),
@@ -195,12 +195,12 @@ class Admin_model extends CI_Model
 		      array(
 		        'title' => 'Tambah Pendaftar Paska Prala',
 		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/register?t='.md5('prala'))
+		        'link' => base_url('admin/prala/register?t='.md5('paska'))
 		      ),
 		      array(
 		        'title' => 'Daftar Pendaftar Prala',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/list?t='.md5('prala'))
+		        'link' => base_url('admin/prala/list?t='.md5('paska'))
 		      ),
 		    )
 		  ),
