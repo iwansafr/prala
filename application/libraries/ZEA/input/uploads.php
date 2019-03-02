@@ -21,6 +21,7 @@ if(!empty($field))
 		}
 	}else if($this->init == 'param')
 	{
+		pr($data[$field]);
 		if(!empty($data[$field]))
 		{
 			foreach ($data[$field] as $di_key => $di_value)
@@ -43,8 +44,8 @@ if(!empty($field))
 				<div class="image" data="<?php echo $data_image[$im_key] ?>">
 					<?php if (in_array(strtolower($multi_file['extension']), $image_type)): ?>
 						<span><a href="#del_image" class="del_images"><i class="fa fa-close" style="color: red;"></i></a></span>
-						<a href="#<?php echo 'images_'.$field.'_'.$im_key; ?>">
-							<img src="<?php echo image_module($this->table, $im_value) ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 200px;height: 140px;" data-toggle="modal" id="<?php echo 'images_'.$field.'_'.$im_key; ?>" data-target="#img_<?php echo $field.$im_key?>">
+						<a href="#">
+							<img src="<?php echo image_module($this->table, $im_value) ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 200px;height: 140px;" data-toggle="modal" data-target="#img_<?php echo $field.$im_key?>">
 						</a>
 					<?php else: ?>
 						<span><a href="#del_image" class="del_images"><i class="fa fa-close" style="color: red;"></i></a></span><br>
@@ -59,7 +60,7 @@ if(!empty($field))
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="img_title_<?php echo $field.$im_key?>"><?php echo str_replace('_',' ', $field).' '.$im_key;?></h4>
+				        <h4 class="modal-title" id="img_title_<?php echo $field.$im_key?>"><?php echo $field.' '.$im_key;?></h4>
 				      </div>
 				      <div class="modal-body" style="text-align: center;">
 				        <img src="<?php echo image_module($this->table, $im_value); ?>" class="img-thumbnail img-responsive">
@@ -75,12 +76,11 @@ if(!empty($field))
 	}
 	$value_input = json_encode($data[$field]);
 	$array_input = array(
-		'name'     => $field.'[]',
-		'class'    => 'form-control',
-		'id'       => $field,
-		'accept'   => @$this->accept[$field],
-		$required  => $required,
-		// 'value' => $value_input
+		'name'   => $field.'[]',
+		'class'  => 'form-control',
+		'accept' => @$this->accept[$field],
+		$required => $required,
+		// 'value'  => $value_input
 		);
 	if(!empty($this->attribute[$field]))
 	{

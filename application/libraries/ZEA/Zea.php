@@ -1461,7 +1461,6 @@ class Zea extends CI_Model
 									$_POST[$value['text']] = @$_POST[$value['text']];
 								}
 							}
-
 							foreach ($this->input as $key => $value)
 							{
 								if($value['type'] == 'text')
@@ -1569,10 +1568,11 @@ class Zea extends CI_Model
 													}else if($this->init == 'param'){
 														foreach ($_POST as $dp_key => $dp_value)
 														{
-															if($dp_key=='image' || preg_match('~_image~', $dp_key))
-															{
+																// pr($file_name);
+															// if($dp_key=='image' || preg_match('~_image~', $dp_key))
+															// {
 																$_POST[$u_value] = $file_name;
-															}
+															// }
 														}
 														$data_param['value'] = json_encode($_POST);
 														$data_param['name']  = $dir_image;
@@ -1696,6 +1696,7 @@ class Zea extends CI_Model
 													}
 													$data_param['value'] = json_encode($_POST);
 													$data_param['name']  = $dir_image;
+													// pr($data_param);
 													// $this->set_param($this->table, $dir_image, $data_param);
 												}
 											}else{

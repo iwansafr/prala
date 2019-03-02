@@ -13,31 +13,47 @@ if(!empty($field))
 	echo form_label(ucfirst($label), $label);
 	if(!empty($image))
 	{
-		?>
-		<div class="image" data="<?php echo $field ?>">
-			<span><a href="#del_image" class="del_image"><i class="fa fa-close" style="color: red;"></i></a></span>
-			<a href="#">
-				<img src="<?php echo image_module($this->table, $image) ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 200px;height: 140px;" data-toggle="modal" data-target="#img_<?php echo $field?>">
-			</a>
-		</div>
+		$img_src = image_module($this->table, $image);
+		if(!empty(getimagesize($img_src)))
+		{
+			?>
+			<div class="image" data="<?php echo $field ?>">
+				<span><a href="#del_image" class="del_image"><i class="fa fa-close" style="color: red;"></i></a></span>
+				<a href="#">
+					<img src="<?php echo $img_src; ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 200px;height: 140px;" data-toggle="modal" data-target="#img_<?php echo $field?>">
+				</a>
+			</div>
 
-		<div class="modal fade" id="img_<?php echo $field?>" tabindex="-1" role="dialog" aria-labelledby="img_<?php echo $field?>">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="img_title_<?php echo $field?>"><?php echo $field;?></h4>
-		      </div>
-		      <div class="modal-body" style="text-align: center;">
-		        <img src="<?php echo image_module($this->table, $image); ?>" class="img-thumbnail img-responsive">
-		      </div>
-		      <div class="modal-footer">
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<br>
-		<?php
+			<div class="modal fade" id="img_<?php echo $field?>" tabindex="-1" role="dialog" aria-labelledby="img_<?php echo $field?>">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="img_title_<?php echo $field?>"><?php echo $field;?></h4>
+			      </div>
+			      <div class="modal-body" style="text-align: center;">
+			        <img src="<?php echo $img_src;; ?>" class="img-thumbnail img-responsive">
+			      </div>
+			      <div class="modal-footer">
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<br>
+			<?php
+		}else{
+			?>
+			<br>
+			<div class="image" data="<?php echo $field ?>">
+				<span><a href="#del_image" class="del_image"><i class="fa fa-close" style="color: red;"></i></a></span>
+				<br>
+				<span>
+					<i class="fa fa-file-alt" style="font-size: 32px;"></i> <a href="<?php echo $img_src ?>"><?php echo str_replace($name.'/','',$image); ?></a>
+				</span>
+			</div>
+			<br>
+			<?php
+		}
 	}
 	$array_input = array(
 		'name'   => $field,
