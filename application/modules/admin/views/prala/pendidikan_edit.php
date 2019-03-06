@@ -60,20 +60,29 @@ if(!empty($_GET['reg_id']) || !empty($_GET['id']))
 	$form->setLabel('prodi_id','Program Studi');
 	$form->tableOptions('prodi_id','prodi','id','title');
 
+	$form->addInput('masuk','text');
+	$form->setType('masuk','date');
+	$form->setLabel('masuk','DU Pra Prala');
+
+	$form->addInput('sib','text');
+	$form->setType('sib','date');
+	$form->setLabel('sib','Surat Ijin Berlayar');
+
 	$form->addInput('nama_kapal','text');
 	$form->setLabel('nama_kapal','Nama Kapal');
 	$form->addInput('nama_perusahaan','text');
 	$form->setLabel('nama_perusahaan','Nama Perusahaan');
 	$form->addInput('prala_id','hidden');
 	$form->setValue('prala_id',$data['id']);
-	$form_tgl = array('masuk','ujian_nasional','ujian_pra_prala','sign_on','sign_off','ujian_trb','ujian_paska','wisudha');
+	// $form_tgl = array('masuk','ujian_nasional','ujian_pra_prala','sign_on','sign_off','ujian_trb','ujian_paska','wisudha');
 
-	foreach ($form_tgl as $key => $value) 
-	{
-		$form->addInput($value,'text');
-		$form->setType($value,'date');
-		$form->setLabel($value, str_replace('_', ' ', $value));
-	}
+	// foreach ($form_tgl as $key => $value) 
+	// {
+	// 	$form->addInput($value,'text');
+	// 	$form->setType($value,'date');
+	// 	$form->setLabel($value, str_replace('_', ' ', $value));
+	// }
+
 
 
 	$form->form();

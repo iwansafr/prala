@@ -51,6 +51,15 @@ $this->zea->setLabel('nama_ibu','Nama Lengkap Ibu');
 $this->zea->addInput('kewarganegaraan','text');
 $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
 
+$this->zea->addInput('hp','text');
+$this->zea->setLabel('hp','No Hp Siswa');
+
+$this->zea->addInput('hp_ortu','text');
+$this->zea->setLabel('hp_ortu','No Hp Orang Tua');
+
+$this->zea->addInput('email','text');
+$this->zea->setLabel('email','Email Siswa');
+
 $this->zea->addInput('provinsi','dropdown');
 $this->zea->setOptions('provinsi', $provinces);
 $this->zea->setLabel('provinsi','Provinsi');
@@ -64,14 +73,14 @@ $this->zea->setOptions('kecamatan', array('Pilih Kecamatan'));
 $this->zea->setLabel('kecamatan','Kecamatan');
 
 $this->zea->addInput('alamat','textarea');
-$this->zea->setLabel('alamat','Alamat Lengkap');
+$this->zea->setLabel('alamat','Alamat Lengkap Siswa');
 
 $this->zea->startCollapse('provinsi', 'Alamat Lengkap');
 $this->zea->endCollapse('alamat');
 $this->zea->setCollapse('provinsi',TRUE);
 
 $this->zea->addInput('nama_sekolah','text');
-$this->zea->setLabel('nama_sekolah','Nama Sekolah');
+$this->zea->setLabel('nama_sekolah','Asal Sekolah');
 $this->zea->addInput('provinsi_sekolah','dropdown');
 $this->zea->setOptions('provinsi_sekolah', $provinces);
 $this->zea->setLabel('provinsi_sekolah','Provinsi Sekolah');
@@ -83,23 +92,22 @@ $this->zea->setOptions('kecamatan_sekolah', array('Pilih Kecamatan'));
 $this->zea->setLabel('kecamatan_sekolah','Kecamatan Sekolah');
 $this->zea->addInput('alamat_sekolah','textarea');
 $this->zea->setLabel('alamat_sekolah','Alamat Sekolah');
+$this->zea->addInput('prodi_id','dropdown');
+$this->zea->tableOptions('prodi_id','prodi','id','title');
+$this->zea->setLabel('prodi_id','Program Studi');
 $this->zea->startCollapse('nama_sekolah', 'Detail Sekolah');
-$this->zea->endCollapse('alamat_sekolah');
+$this->zea->endCollapse('prodi_id');
 $this->zea->setCollapse('nama_sekolah',TRUE);
 
-$this->zea->addInput('email','text');
-$this->zea->setLabel('email','Email');
-$this->zea->addInput('hp','text');
-$this->zea->setLabel('hp','No Hp');
 
 $this->zea->addInput('foto_3x4','gallery');
 $this->zea->setAccept('foto_3x4', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('foto_3x4','multiple');
 $this->zea->setLabel('foto_3x4','Foto 3x4');
-$this->zea->addInput('foto_2x3','gallery');
-$this->zea->setAccept('foto_2x3', '.jpg,.jpeg,.png');
-$this->zea->setAttribute('foto_2x3','multiple');
-$this->zea->setLabel('foto_2x3','Foto 2x3');
+// $this->zea->addInput('foto_2x3','gallery');
+// $this->zea->setAccept('foto_2x3', '.jpg,.jpeg,.png');
+// $this->zea->setAttribute('foto_2x3','multiple');
+// $this->zea->setLabel('foto_2x3','Foto 2x3');
 
 $this->zea->addInput('ktp','gallery');
 $this->zea->setAccept('ktp', '.jpg,.jpeg,.png');
@@ -151,8 +159,8 @@ $this->zea->setAccept('bukti_pembayaran', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('bukti_pembayaran','multiple');
 $this->zea->setLabel('bukti_pembayaran','Bukti Lunas Pembayaran');
 
-if(($is_prala && (is_admin() || is_root())) || !empty($_GET['reg_id']))
-{
+// if(($is_prala && (is_admin() || is_root())) || !empty($_GET['reg_id']))
+// {
 	$this->zea->addInput('surat_orang_tua','gallery');
 	$this->zea->setAccept('surat_orang_tua', '.jpg,.jpeg,.png');
 	$this->zea->setAttribute('surat_orang_tua','multiple');
@@ -179,6 +187,10 @@ if(($is_prala && (is_admin() || is_root())) || !empty($_GET['reg_id']))
 	$this->zea->setLabel('pendaftaran_prala','Pendaftaran Prala');
 	$this->zea->addInput('status','hidden');
 	$this->zea->setValue('status','2');
-}
+// }
+
+$this->zea->startCollapse('foto_3x4','Upload Dokumen');
+$this->zea->endCollapse('pendaftaran_prala');
+$this->zea->setCollapse('foto_3x4',TRUE);
 
 $this->zea->form();
