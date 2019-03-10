@@ -14,7 +14,7 @@ if(!empty($field))
 	if(!empty($image))
 	{
 		$img_src = image_module($this->table, $image);
-		if(!empty(@getimagesize($img_src)))
+		if(!empty($img_src))
 		{
 			?>
 			<div class="image" data="<?php echo $field ?>">
