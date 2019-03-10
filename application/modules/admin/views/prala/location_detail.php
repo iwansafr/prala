@@ -120,30 +120,33 @@ if(!empty(@$_GET['t']=='pdf'))
 				             		<?php 
 				             		for($j=1;$j<=3;$j++)
 				             		{
-					             		?>
-					                <td>
-					                	<div class="image">
-															<a href="#img_<?php echo $prala_location['location']['id'].'_'.$i;?>">
-																<img src="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['foto_kegiatan_'.$j]) ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 150px;height: 150px;" data-toggle="modal" data-target="#img_<?php echo $prala_location['location']['id'].'_'.$i?>">
-															</a>
-														</div>
-														<div class="modal fade" id="img_<?php echo $prala_location['location']['id'].'_'.$i;?>" tabindex="-1" role="dialog" aria-labelledby="img_<?php echo $prala_location['location']['id'].'_'.$i;?>">
-														  <div class="modal-dialog" role="document">
-														    <div class="modal-content">
-														      <div class="modal-header">
-														        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														        <h4 class="modal-title" id="img_title_<?php echo $prala_location['location']['id'].'_'.$i?>"><?php echo $prala_location['location']['id'].'_'.$i;?></h4>
-														      </div>
-														      <div class="modal-body" style="text-align: center;">
-														        <img src="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['foto_kegiatan_'.$j]); ?>" class="img-thumbnail img-responsive">
-														      </div>
-														      <div class="modal-footer">
-														      </div>
-														    </div>
-														  </div>
-														</div>
-					                </td>
-				             			<?php
+				             			if(!empty($data['foto_kegiatan_'.$j]))
+				             			{
+						             		?>
+						                <td>
+						                	<div class="image">
+																<a href="#img_<?php echo $prala_location['location']['id'].'_'.$i;?>">
+																	<img src="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['foto_kegiatan_'.$j]) ?>" class="img-responsive image-thumbnail image" style="object-fit: cover;width: 150px;height: 150px;" data-toggle="modal" data-target="#img_<?php echo $prala_location['location']['id'].'_'.$i?>">
+																</a>
+															</div>
+															<div class="modal fade" id="img_<?php echo $prala_location['location']['id'].'_'.$i;?>" tabindex="-1" role="dialog" aria-labelledby="img_<?php echo $prala_location['location']['id'].'_'.$i;?>">
+															  <div class="modal-dialog" role="document">
+															    <div class="modal-content">
+															      <div class="modal-header">
+															        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															        <h4 class="modal-title" id="img_title_<?php echo $prala_location['location']['id'].'_'.$i?>"><?php echo $prala_location['location']['id'].'_'.$i;?></h4>
+															      </div>
+															      <div class="modal-body" style="text-align: center;">
+															        <img src="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['foto_kegiatan_'.$j]); ?>" class="img-thumbnail img-responsive">
+															      </div>
+															      <div class="modal-footer">
+															      </div>
+															    </div>
+															  </div>
+															</div>
+						                </td>
+					             			<?php
+				             			}
 				             		}?>
 					            </tr>
 					            <tr>
@@ -154,13 +157,17 @@ if(!empty(@$_GET['t']=='pdf'))
 					            <tr>
 					            	<td colspan="3" style="text-align:center;">
 					            		<i class="fa fa-file-alt"></i><br>
-					            		<a href="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['kegiatan_harian']) ?>"><?php echo 'Download Kegiatan Harian' ?></a>
+					            		<?php if (!empty($data['kegiatan_harian'])): ?>
+					            			<a href="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['kegiatan_harian']) ?>"><?php echo 'Download Kegiatan Harian' ?></a>
+					            		<?php endif ?>
 					            	</td>
 					            </tr>
 					            <tr>
 					            	<td colspan="3" style="text-align:center;">
 					            		<i class="fa fa-file-alt"></i><br>
-					            		<a href="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['lampiran_kegiatan_harian']) ?>"><?php echo 'Download lampiran kegiatan harian' ?></a>
+					            		<?php if (!empty($data['lampiran_kegiatan_harian'])): ?>
+					            			<a href="<?php echo image_module('prala_location_bulan', 'location_'.@intval($prala_location['location']['id']).'_'.$i.'/'.$data['lampiran_kegiatan_harian']) ?>"><?php echo 'Download lampiran kegiatan harian' ?></a>
+					            		<?php endif ?>
 					            	</td>
 					            </tr>
 					        </tbody>

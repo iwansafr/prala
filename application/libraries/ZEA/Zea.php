@@ -10,6 +10,7 @@ class Zea extends CI_Model
 		$this->load->helper('form');
 		// $this->load->library('upload');
 		$this->load->library('pagination');
+		$this->setUrl();
 	}
 
 	var $table         = '';
@@ -62,6 +63,8 @@ class Zea extends CI_Model
 	var $search        = FALSE;
 	var $success       = FALSE;
 	var $insert_id     = 0;
+	var $url           = '';
+	var $get           = '';
 
 	public function init($text = '')
 	{
@@ -81,6 +84,58 @@ class Zea extends CI_Model
 				default:
 					$this->init = '';
 				break;
+			}
+		}
+	}
+
+	public function setUrl($url = '')
+	{
+		if(empty($url))
+		{
+			$this->url = $this->uri->uri_string();
+			$this->url .= !empty($_SERVER['REDIRECT_QUERY_STRING']) ? '?'.$_SERVER['REDIRECT_QUERY_STRING'] : '';
+			if($this->hasOrder($this->url))
+			{
+				$this->url = preg_replace('~\&?sort_by([\S]+)~', '', $this->url);
+			}
+		}else{
+			$this->url = $url;
+		}
+	}
+
+	public function hasGet($url = '')
+	{
+		if(!empty($url))
+		{
+			if(preg_match('~\?~', $url)){
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}
+	}
+
+	public function theGet()
+	{
+		$get = @$_GET;
+		if(!empty($get))
+		{
+			if(array_key_exists('keyword', $get))
+			{
+				unset($get['keyword']);
+			}
+			$this->get = $get;
+		}
+	}
+
+	public function hasOrder($url = '')
+	{
+		if(!empty($url))
+		{
+			if(preg_match('~sort_by=~', $url)){
+				return TRUE;
+			}else{
+				return FALSE;
 			}
 		}
 	}
@@ -203,6 +258,7 @@ class Zea extends CI_Model
 
 	public function search()
 	{
+		$this->theGet();
 		$this->search = TRUE;
 	}
 
@@ -287,31 +343,28 @@ class Zea extends CI_Model
 		{
 			foreach ($this->input as $key => $value)
 			{
-				if($value['type'] == 'dropdown')
+				if($value['text'] == $field)
 				{
-					if($value['text'] == $field)
+					$this->db->select($index);
+					$this->db->select($label);
+					$this->db->from($table);
+					if(!empty($ex))
 					{
-						$this->db->select($index);
-						$this->db->select($label);
-						$this->db->from($table);
-						if(!empty($ex))
+						$this->db->where($ex);
+					}
+					$data = $this->db->get()->result_array();
+					$options    = array();
+					$options[0] = 'None';
+					if(!empty($data))
+					{
+						foreach ($data as $dkey => $dvalue)
 						{
-							$this->db->where($ex);
+							$dvalue[$index] = $dvalue[$index] == 0 ? '': $dvalue[$index];
+							$options[$dvalue[$index]] = $dvalue[$label];
 						}
-						$data = $this->db->get()->result_array();
-						$options    = array();
-						$options[0] = 'None';
-						if(!empty($data))
-						{
-							foreach ($data as $dkey => $dvalue)
-							{
-								$dvalue[$index] = $dvalue[$index] == 0 ? '': $dvalue[$index];
-								$options[$dvalue[$index]] = $dvalue[$label];
-							}
-							$this->options[$field] = $options;
-						}else{
-							$this->options[$field] = $options;
-						}
+						$this->options[$field] = $options;
+					}else{
+						$this->options[$field] = $options;
 					}
 				}
 			}
@@ -904,7 +957,6 @@ class Zea extends CI_Model
 								if($key > 0){
 									$where .= ' OR ';
 								}
-								// $where .= $value.' REGEXP ?';
 								$where .= $value.' LIKE ?';
 								$bind[] = '%'.$keyword.'%';
 							}
@@ -914,19 +966,19 @@ class Zea extends CI_Model
 								if($key > 0){
 									$where .= ' OR ';
 								}
-								// $where .= $value.' REGEXP ?';
 								$where .= $value.' LIKE ?';
 								$bind[] = '%'.$keyword.'%';
 							}
 						}
 					}
 					$sql .= $where;
-					// $url_get .= 'keyword='.urlencode($keyword);
 				}
 			}
 			if(!empty($this->where))
 			{
-				$sql .= $this->where;
+				// $where .= $this->hasGet($sql) ? ' AND '.$this->where : ' '.$this->where;
+				// $sql .= ' '.$where;
+				$sql .= $this->hasGet($sql) ? ' AND '.$this->where : ' '.$this->where;
 			}
 			$num_rows = $this->db->query($sql,$bind)->num_rows();
 
@@ -934,6 +986,7 @@ class Zea extends CI_Model
 			{
 				$this->order_by($sort_by, @$_GET['type']);
 			}
+
 			$sql          .= ' ORDER BY '.$this->orderby;
 			$sql          .= ' LIMIT '.$page*$limit.','.$limit;
 			$data['data']  = $this->db->query($sql,$bind)->result_array();
@@ -1160,11 +1213,18 @@ class Zea extends CI_Model
 								<?php
 								if($this->search == TRUE)
 								{
+									$the
 									?>
 			             	<div class="box-tools">
 			             		<form action="" method="get">
 					              <div class="input-group input-group-sm" style="width: 150px;">
 					                <input type="text" name="keyword" class="form-control pull-right" placeholder="Search" value="<?php echo !empty(@$_GET['keyword']) ? $_GET['keyword'] : ''; ?>" required>
+					                <?php if (!empty($this->get)): ?>
+					                	<?php foreach ($this->get as $key => $value): ?>
+					                		<input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>">
+					                	<?php endforeach ?>
+					                	
+					                <?php endif ?>
 					                <div class="input-group-btn">
 					                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 					                </div>
@@ -1184,6 +1244,7 @@ class Zea extends CI_Model
 												{
 													echo '<th>No</th>';
 												}
+												$delimiter_link = $this->hasGet($this->url) ? '&':'?';
 												foreach ($this->input as $key => $value)
 												{
 													if(empty($data))
@@ -1218,7 +1279,7 @@ class Zea extends CI_Model
 															{
 																$arrow = (@$_GET['type'] == 'asc') ? '<i class="fa fa-sort-alpha-asc"></i> ' : '<i class="fa fa-sort-alpha-desc"></i> ';
 															}
-															echo '<th><a href="?sort_by='.$field.'&type='.$type.'">'.$arrow.ucwords($label).'</a></th>';
+															echo '<th><a href="'.base_url($this->url).$delimiter_link.'sort_by='.$field.'&type='.$type.'">'.$arrow.ucwords($label).'</a></th>';
 														}
 													}
 												}
@@ -1247,6 +1308,7 @@ class Zea extends CI_Model
 											{
 												$numbering_page = @intval($_GET['page']) < 1 ? 1 : @intval($_GET['page']);
 												$i = ($this->limit*$numbering_page)-$this->limit+1;
+
 												foreach ($data as $dkey => $dvalue)
 												{
 													if(!empty($dvalue['id']))
@@ -1345,6 +1407,10 @@ class Zea extends CI_Model
 															$tot_col--;
 														}
 													}
+												}
+												if(!empty($this->numbering))
+												{
+													$tot_col++;
 												}
 												?>
 												<tr>
@@ -1460,7 +1526,15 @@ class Zea extends CI_Model
 								{
 									$_POST[$value['text']] = @$_POST[$value['text']];
 								}
+								if($value['type'] == 'checkbox')
+								{
+									if(empty($_POST[$value['text']]))
+									{
+										$_POST[$value['text']] = 0;
+									}
+								}
 							}
+
 							foreach ($this->input as $key => $value)
 							{
 								if($value['type'] == 'text')
@@ -1538,7 +1612,7 @@ class Zea extends CI_Model
 												$ext = pathinfo($_FILES[$upload[$i]]['name']);
 												if($this->check_type($ext['extension'],$u_value))
 												{
-													$file_name = $_POST[$u_value].'_esoftgreat.com'.'.'.$ext['extension'];
+													$file_name = $_POST[$u_value].'.'.$ext['extension'];
 													if($this->init == 'edit')
 													{
 														$file_name_exist = $this->get_one($this->table, $u_value);
@@ -1568,11 +1642,10 @@ class Zea extends CI_Model
 													}else if($this->init == 'param'){
 														foreach ($_POST as $dp_key => $dp_value)
 														{
-																// pr($file_name);
-															// if($dp_key=='image' || preg_match('~_image~', $dp_key))
-															// {
+															if($dp_key=='image' || preg_match('~_image~', $dp_key))
+															{
 																$_POST[$u_value] = $file_name;
-															// }
+															}
 														}
 														$data_param['value'] = json_encode($_POST);
 														$data_param['name']  = $dir_image;
@@ -1620,7 +1693,7 @@ class Zea extends CI_Model
 												foreach ($_FILES[$uploads[$i]]['name'] as $n_key => $n_value)
 												{
 													$exts[$n_key]       = pathinfo($n_value);
-													$files_name[$n_key] = $_POST[$u_value].'_'.$n_key.'_esoftgreat.com'.'.'.$exts[$n_key]['extension'];
+													$files_name[$n_key] = $_POST[$u_value].'_'.$n_key.'_'.time().'.'.$exts[$n_key]['extension'];
 												}
 												$files_upload = array();
 												$j = 0;
@@ -1696,7 +1769,6 @@ class Zea extends CI_Model
 													}
 													$data_param['value'] = json_encode($_POST);
 													$data_param['name']  = $dir_image;
-													// pr($data_param);
 													// $this->set_param($this->table, $dir_image, $data_param);
 												}
 											}else{

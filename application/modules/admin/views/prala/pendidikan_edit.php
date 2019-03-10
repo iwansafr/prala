@@ -1,3 +1,6 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+$t = array('nautika'=>'1','teknika'=>'2');
+?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3">
@@ -6,6 +9,7 @@
 					<label for="">Cari Peserta</label>
 					<div class="form-inline">
 						<input type="text" name="reg_id" class="form-control" value="<?php echo @$_GET['reg_id'] ?>" placeholder="no registration">
+						<input type="hidden" name="t" value="<?php echo @$_GET['t'] ?>">
 						<button class="btn btn-default"><i class="fa fa-search"></i></button>
 					</div>
 				</div>
@@ -13,8 +17,7 @@
 		</div>
 	</div>
 </div>
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php
 if(!empty($_GET['reg_id']) || !empty($_GET['id']))
 {
 	?>
@@ -25,6 +28,10 @@ if(!empty($_GET['reg_id']) || !empty($_GET['id']))
 			</h4>
 		</div>
 		<div class="panel panel-body">
+			<div class="form-group">
+				<label>Foto Siswa</label>
+				<img src="<?php echo image_module('prala', 'gallery/'.$data['id'].'/'.$data['foto_3x4']) ?>" class="img-responsive" width="120" height="160">
+			</div>
 			<?php 
 			$show = array('kode_pelaut','nama','tempat_lahir','tgl_lahir','kelamin');
 			foreach ($data as $key => $value) 
@@ -49,41 +56,57 @@ if(!empty($_GET['reg_id']) || !empty($_GET['id']))
 		</div>
 	</div>
 	<?php
-	$form = new zea();
-	$form->init('edit');
-	$form->setTable('prala_pendidikan');
-	$title = empty($_GET['id']) ? 'Tambah' : 'Edit';
-	$form->setHeading($title.' Status Pendidikan');
-	$form->setEditStatus(FALSE);
-	$form->setId(@intval($_GET['id']));
-	$form->addInput('prodi_id','dropdown');
-	$form->setLabel('prodi_id','Program Studi');
-	$form->tableOptions('prodi_id','prodi','id','title');
+	$status = @intval($t[$_GET['t']]);
+	if(!empty($status))
+	{
+		$form = new zea();
+		$form->init('edit');
+		$form->setTable('prala_pendidikan');
+		$title = empty($_GET['id']) ? 'Tambah' : 'Edit';
+		$form->setHeading($title.' Status Pendidikan');
+		$form->setEditStatus(FALSE);
+		$form->setId(@intval($_GET['id']));
+		$form->addInput('prodi_id','dropdown');
+		$form->setLabel('prodi_id','Program Studi');
+		$form->tableOptions('prodi_id','prodi','id','title');
 
-	$form->addInput('masuk','text');
-	$form->setType('masuk','date');
-	$form->setLabel('masuk','DU Pra Prala');
+		$form->addInput('masuk','text');
+		$form->setType('masuk','date');
+		$form->setLabel('masuk','DU Pra Prala');
 
-	$form->addInput('sib','text');
-	$form->setType('sib','date');
-	$form->setLabel('sib','Surat Ijin Berlayar');
+		$form->addInput('sib','text');
+		$form->setType('sib','date');
+		$form->setLabel('sib','Surat Ijin Berlayar');
 
-	$form->addInput('nama_kapal','text');
-	$form->setLabel('nama_kapal','Nama Kapal');
-	$form->addInput('nama_perusahaan','text');
-	$form->setLabel('nama_perusahaan','Nama Perusahaan');
-	$form->addInput('prala_id','hidden');
-	$form->setValue('prala_id',$data['id']);
-	// $form_tgl = array('masuk','ujian_nasional','ujian_pra_prala','sign_on','sign_off','ujian_trb','ujian_paska','wisudha');
+		$form->addInput('sign_on','text');
+		$form->setType('sign_on','date');
+		$form->setLabel('sign_on','Sign On');
 
-	// foreach ($form_tgl as $key => $value) 
-	// {
-	// 	$form->addInput($value,'text');
-	// 	$form->setType($value,'date');
-	// 	$form->setLabel($value, str_replace('_', ' ', $value));
-	// }
+		$form->addInput('nama_kapal','text');
+		$form->setLabel('nama_kapal','Nama Kapal');
 
+		$form->addInput('nama_perusahaan','text');
+		$form->setLabel('nama_perusahaan','Nama Perusahaan');
 
+		$form->addInput('sign_off','text');
+		$form->setType('sign_off','date');
+		$form->setLabel('sign_off','Sign Off');
 
-	$form->form();
+		$form->addInput('du_paska','text');
+		$form->setType('du_paska','date');
+		$form->setLabel('du_paska','DU Paska Prala');
+
+		$form->addInput('keterangan','textarea');
+		$form->setLabel('keterangan',' Keterangan');
+
+		$form->addInput('prala_id','hidden');
+		$form->setValue('prala_id',$data['id']);
+
+		$form->addInput('status','hidden');
+		$form->setValue('status', $status);
+
+		$form->form();
+	}else{
+		echo msg('Link that you are accessing is not valid','danger');
+	}
 }

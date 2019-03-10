@@ -16,9 +16,11 @@ $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
 
 $this->zea->setDelete(TRUE);
 $this->zea->setEdit(TRUE);
-if((is_admin() || is_root()) && !empty($is_prala)){
+if(!empty($is_paska)){
 	$this->zea->setWhere('status = 2');
 	$this->zea->setEditLink(base_url('admin/prala/register?t='.@$_GET['t'].'&id='));
+}else{
+	$this->zea->setWhere('status = 1');
 }
 
 $this->zea->form();

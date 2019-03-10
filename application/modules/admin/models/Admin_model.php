@@ -134,12 +134,12 @@ class Admin_model extends CI_Model
 		      array(
 		        'title' => 'Tambah Status Prala Nautika',
 		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/pendidikan/edit')
+		        'link' => base_url('admin/prala/pendidikan/edit?t=nautika')
 		      ),
 		      array(
 		        'title' => 'Data Status Prala Nautika',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/pendidikan/list')
+		        'link' => base_url('admin/prala/pendidikan/list?t=nautika')
 		      ),
 		      array(
 		        'title' => 'Program Studi',
@@ -156,12 +156,12 @@ class Admin_model extends CI_Model
 		      array(
 		        'title' => 'Tambah Status Prala Teknika',
 		        'icon' => 'fa-pencil-alt',
-		        'link' => base_url('admin/prala/pendidikan/edit')
+		        'link' => base_url('admin/prala/pendidikan/edit?t=teknika')
 		      ),
 		      array(
 		        'title' => 'Data Status Prala Teknika',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/pendidikan/list')
+		        'link' => base_url('admin/prala/pendidikan/list?t=teknika')
 		      ),
 		      array(
 		        'title' => 'Program Studi',
@@ -212,7 +212,7 @@ class Admin_model extends CI_Model
 		      array(
 		        'title' => 'Data Laporan Location',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/location_list')
+		        'link' => base_url('admin/prala/location_list?t=nautika')
 		      ),
 		    )
 		  ),
@@ -224,7 +224,7 @@ class Admin_model extends CI_Model
 		      array(
 		        'title' => 'Data Laporan Location',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/location_list')
+		        'link' => base_url('admin/prala/location_list?t=teknika')
 		      ),
 		    )
 		  ),

@@ -57,35 +57,50 @@ if(!empty($data))
 		</div>
 	</div>
 	<?php
-	$form = new zea();
-	$form->init('roll');
-	$form->setTable('prala_pendidikan');
-	$form->setNumbering(true);
-	$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala_pendidikan.id,prala.no_registration AS reg_id,prala.nama,prala.kode_pelaut,prala_pendidikan.prodi_id,prala_pendidikan.masuk,prala_pendidikan.ujian_nasional,prala_pendidikan.nama_kapal,prala_pendidikan.nama_perusahaan,prala_pendidikan.sign_off,prala_pendidikan.ujian_trb,prala_pendidikan.ujian_paska,prala_pendidikan.wisudha');
-	$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
-	$form->setWhere(' '.$delimeter.' prala_id = '.@intval($data['id']));
-	$form->search();
-	$form->addInput('id','hidden');
-	$form->addInput('masuk','plaintext');
-	$form->setLabel('masuk','DU Pra Prala');
-	$form->addInput('ujian_nasional','plaintext');
-	$form->setLabel('ujian_nasional','Ujian Nasional');
-	$form->addInput('nama_kapal','plaintext');
-	$form->setLabel('nama_kapal', 'Nama Kapal');
-	$form->addInput('nama_perusahaan','plaintext');
-	$form->setLabel('nama_perusahaan', 'Nama Perusahaan');
-	$form->addInput('sign_off','plaintext');
-	$form->setLabel('sign_off', 'Sign Off');
-	$form->addInput('ujian_trb','plaintext');
-	$form->setLabel('ujian_trb', 'Ujian TRB');
-	$form->addInput('ujian_paska','plaintext');
-	$form->setLabel('ujian_paska', 'DU Paska Prala');
-	$form->addInput('wisudha','plaintext');
-	$form->setLabel('wisudha', 'Wisudha');
-	$form->setDelete(TRUE);
-	$form->setEdit(TRUE);
-	$form->setEditLink(base_url('admin/prala/pendidikan/edit?reg_id='.$data['no_registration'].'&id='));
-	$form->form();
+	$t = array('nautika'=>'1','teknika'=>'2');
+	$status = @$t[$_GET['t']];
+	if(!empty($status))
+	{
+		$form = new zea();
+		$form->init('roll');
+		$form->setTable('prala_pendidikan');
+		$form->setNumbering(true);
+		$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala_pendidikan.id,prala.no_registration AS reg_id,prala_pendidikan.masuk,prala_pendidikan.nama_kapal,prala_pendidikan.nama_perusahaan,prala_pendidikan.sign_off,prala_pendidikan.sign_on,prala_pendidikan.sib,prala_pendidikan.du_paska,prala_pendidikan.keterangan');
+		$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
+		$form->setWhere(' '.$delimeter.' prala_id = '.@intval($data['id']).' AND prala_pendidikan.status= '.@intval($status));
+		$form->search();
+		$form->addInput('id','hidden');
+
+		$form->addInput('masuk','plaintext');
+		$form->setLabel('masuk','DU Pra Prala');
+
+		$form->addInput('sib','plaintext');
+		$form->setLabel('sib','Surat Ijin Berlayar');
+
+		$form->addInput('sign_on','plaintext');
+		$form->setLabel('sign_on', 'Sign On');
+
+		$form->addInput('nama_kapal','plaintext');
+		$form->setLabel('nama_kapal', 'Nama Kapal');
+
+		$form->addInput('nama_perusahaan','plaintext');
+		$form->setLabel('nama_perusahaan', 'Nama Perusahaan');
+
+		$form->addInput('sign_off','plaintext');
+		$form->setLabel('sign_off', 'Sign Off');
+
+		$form->addInput('du_paska','plaintext');
+		$form->setLabel('du_paska', 'DU Paska Prala');
+		
+		$form->addInput('keterangan','plaintext');
+		$form->setLabel('keterangan', 'Keterangan');
+		$form->setDelete(TRUE);
+		$form->setEdit(TRUE);
+		$form->setEditLink(base_url('admin/prala/pendidikan/edit?reg_id='.$data['no_registration'].'&t='.@$_GET['t'].'&id='));
+		$form->form();
+	}else{
+		echo msg('link that youre requesting is invalid', 'danger');
+	}
 }else{
 	echo msg('Invalid Request','danger');
 }
