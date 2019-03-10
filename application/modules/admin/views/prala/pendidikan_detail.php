@@ -94,9 +94,12 @@ if(!empty($data))
 		
 		$form->addInput('keterangan','plaintext');
 		$form->setLabel('keterangan', 'Keterangan');
-		$form->setDelete(TRUE);
-		$form->setEdit(TRUE);
-		$form->setEditLink(base_url('admin/prala/pendidikan/edit?reg_id='.$data['no_registration'].'&t='.@$_GET['t'].'&id='));
+		if(is_admin() || is_root())
+		{
+			$form->setDelete(TRUE);
+			$form->setEdit(TRUE);
+			$form->setEditLink(base_url('admin/prala/pendidikan/edit?reg_id='.$data['no_registration'].'&t='.@$_GET['t'].'&id='));
+		}
 		$form->form();
 	}else{
 		echo msg('link that youre requesting is invalid', 'danger');

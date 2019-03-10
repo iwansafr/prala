@@ -13,9 +13,12 @@ $this->zea->addInput('nama','plaintext');
 $this->zea->setLabel('nama','Nama Lengkap');
 $this->zea->addInput('kewarganegaraan','plaintext');
 $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
-
-$this->zea->setDelete(TRUE);
-$this->zea->setEdit(TRUE);
+	
+if(is_admin() || is_root())
+{
+	$this->zea->setDelete(TRUE);
+	$this->zea->setEdit(TRUE);
+}
 if(!empty($is_paska)){
 	$this->zea->setWhere('status = 2');
 	$this->zea->setEditLink(base_url('admin/prala/register?t='.@$_GET['t'].'&id='));
