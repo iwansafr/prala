@@ -4,6 +4,7 @@ $status = @$t[$_GET['t']];
 
 if(!empty($status))
 {
+	$link = (is_admin() || is_root()) ? 'admin' : 'home';
 	$form = new zea();
 	$form->init('roll');
 	$form->setTable('prala_pendidikan');
@@ -12,11 +13,11 @@ if(!empty($status))
 	$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
 	$form->setWhere(" {$delimeter} prala_pendidikan.prodi_id != '' AND prala_pendidikan.status = {$status} group by prala.id");
 	$form->setNumbering(TRUE);
-	$form->addInput('id','hidden');
+	// $form->addInput('id','hidden');
 	$form->addInput('kode_pelaut','plaintext');
 	$form->setLabel('kode_pelaut',' Kode Pelaut');
 	$form->addInput('nama','link');
-	$form->setLink('nama', base_url('admin/prala/pendidikan/detail'),'reg_id');
+	$form->setLink('nama', base_url($link.'/prala/pendidikan/detail'),'reg_id');
 	$form->setExtLink('nama','&t='.$_GET['t']);
 	$form->addInput('nama_sekolah','plaintext');
 	$form->setLabel('nama_sekolah','Asal Sekolah');

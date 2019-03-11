@@ -12,43 +12,45 @@ if(!empty($data))
 			profile
 		</div>
 		<div class="panel-body">
-			<div class="col-md-2">
-				<img src="<?php echo image_module('prala','gallery/'.$data['id'].'/'.$foto) ?>" alt="" style="object-fit: cover; width: 150px;height: 200px;" class="img-responsive">
-			</div>
-			<div class="col-md-4">
-				<div class="box-body table-responsive no-padding">
-					<table class="table table-bordered table-hover table-stripped">
-						<tbody>
-							<tr>
-								<td>Kode Pelaut</td>
-								<td><?php echo $data['kode_pelaut'] ?></td>
-							</tr>
-							<tr>
-								<td>Nama Lengkap</td>
-								<td><?php echo $data['nama'] ?></td>
-							</tr>
-							<tr>
-								<td>Tempat Lahir</td>
-								<td><?php echo $data['tempat_lahir'] ?></td>
-							</tr>
-							<tr>
-								<td>Tanggal Lahir</td>
-								<td><?php echo $data['tgl_lahir'] ?></td>
-							</tr>
-							<tr>
-								<td>Asal Sekolah</td>
-								<td><?php echo $data['nama_sekolah'] ?></td>
-							</tr>
-							<tr>
-								<td>Program Studi</td>
-								<td><?php echo $prodi['title'] ?></td>
-							</tr>
-							<tr>
-								<td>Jenis Kelamin</td>
-								<td><?php echo $kelamin[$data['kelamin']] ?></td>
-							</tr>
-						</tbody>
-					</table>
+			<div class="row">
+				<div class="col-md-2">
+					<img src="<?php echo image_module('prala','gallery/'.$data['id'].'/'.$foto) ?>" alt="" style="object-fit: cover; width: 150px;height: 200px;" class="img-responsive">
+				</div>
+				<div class="col-md-4">
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-bordered table-hover table-stripped">
+							<tbody>
+								<tr>
+									<td>Kode Pelaut</td>
+									<td><?php echo $data['kode_pelaut'] ?></td>
+								</tr>
+								<tr>
+									<td>Nama Lengkap</td>
+									<td><?php echo $data['nama'] ?></td>
+								</tr>
+								<tr>
+									<td>Tempat Lahir</td>
+									<td><?php echo $data['tempat_lahir'] ?></td>
+								</tr>
+								<tr>
+									<td>Tanggal Lahir</td>
+									<td><?php echo $data['tgl_lahir'] ?></td>
+								</tr>
+								<tr>
+									<td>Asal Sekolah</td>
+									<td><?php echo $data['nama_sekolah'] ?></td>
+								</tr>
+								<tr>
+									<td>Program Studi</td>
+									<td><?php echo $prodi['title'] ?></td>
+								</tr>
+								<tr>
+									<td>Jenis Kelamin</td>
+									<td><?php echo $kelamin[$data['kelamin']] ?></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
