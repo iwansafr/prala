@@ -26,7 +26,7 @@ $this->zea->setId($id);
 $this->zea->setEditStatus(FALSE);
 if(@$_GET['t']==md5('paska'))
 {
-	$heading_title = 'Pendaftar Paska Prala';
+	$heading_title = 'DU Paska Prala';
 	$status = '2';
 }else{
 	$heading_title = 'DU Pra Prala';
@@ -221,10 +221,30 @@ $this->zea->setLabel('skl_ukp_prala','Surat Keterangan Lulus UKP Pra Prala');
 $this->zea->setAccept('skl_ukp_prala', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('skl_ukp_prala','multiple');
 
+if($status == 2)
+{
+	$this->zea->addInput('surat_mutasi_on','gallery');
+	$this->zea->setLabel('surat_mutasi_on','Surat Mutasi ON');
+	$this->zea->setAccept('surat_mutasi_on', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('surat_mutasi_on','multiple');	
+
+	$this->zea->addInput('surat_mutasi_off','gallery');
+	$this->zea->setLabel('surat_mutasi_off','Surat Mutasi OFF');
+	$this->zea->setAccept('surat_mutasi_off', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('surat_mutasi_off','multiple');	
+
+	$this->zea->addInput('skml','gallery');
+	$this->zea->setLabel('skml','Surat Keterangan Masa Layar');
+	$this->zea->setAccept('skml', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('skml','multiple');	
+}
+
 $this->zea->addInput('sert_watchkeeping','gallery');
 $this->zea->setLabel('sert_watchkeeping','Sertifikat Wathckeeping');
 $this->zea->setAccept('sert_watchkeeping', '.jpg,.jpeg,.png');
 $this->zea->setAttribute('sert_watchkeeping','multiple');
+
+
 
 $this->zea->startCollapse('foto_3x4','Upload Dokumen');
 $this->zea->endCollapse('sert_watchkeeping');
