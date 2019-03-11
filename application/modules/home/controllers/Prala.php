@@ -23,6 +23,7 @@ class Prala extends CI_Controller
 
 	public function pendidikan($view)
 	{
+		$this->home_model->home();
 		$data = array();
 		if(!empty($_GET['reg_id']))
 		{
