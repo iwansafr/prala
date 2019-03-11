@@ -20,9 +20,9 @@ $t = array('nautika'=>'1','teknika'=>'2');
 	</div>
 </div>
 <?php
-if(!empty($data))
+if((!empty($_GET['reg_id']) || !empty($_GET['id'])))
 {
-	if(!empty($_GET['reg_id']) || !empty($_GET['id']))
+	if(!empty($data))
 	{
 		?>
 		<div class="panel panel-default">
@@ -117,7 +117,7 @@ if(!empty($data))
 				echo msg('Link that you are accessing is not valid','danger');
 			}
 		}
+	}else{
+		echo msg('data not found', 'danger');
 	}
-}else{
-	echo msg('data not found','danger');
 }
