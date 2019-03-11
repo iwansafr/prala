@@ -22,6 +22,10 @@ class Content extends CI_Controller
 		// $this->esg->set_esg('extra_js',base_url('templates/AdminLTE/assets/jquery-slimscroll/jquery.slimscroll.min.js'));
 		$this->load->view('index');
 	}
+	public function image()
+	{
+		$this->load->view('index');
+	}
 	public function edit()
 	{
 		$data['tag_name'] = $this->content_model->content_tag();
