@@ -6,12 +6,14 @@ $t = array('nautika'=>'1','teknika'=>'2');
 		<div class="col-md-3">
 			<form action="" method="get">
 				<div class="form-group">
-					<label for="">Cari Peserta</label>
-					<div class="form-inline">
-						<input type="text" name="reg_id" class="form-control" value="<?php echo @$_GET['reg_id'] ?>" placeholder="no registration">
-						<input type="hidden" name="t" value="<?php echo @$_GET['t'] ?>">
-						<button class="btn btn-default"><i class="fa fa-search"></i></button>
-					</div>
+				  <div class="input-group">
+				    <input type="text" name="reg_id" class="form-control" placeholder="No Registration" value="<?php echo @$_GET['reg_id'] ?>">
+				        <span class="input-group-btn">
+				          <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+				          </button>
+				        </span>
+				    <input type="hidden" name="t" value="<?php echo @$_GET['t'] ?>">
+				  </div>
 				</div>
 			</form>
 		</div>
