@@ -23,14 +23,12 @@ if(is_admin() || is_root())
 	$roll->setRequired('all');
 	$roll->setFormName('prodi_list');
 	?>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<?php $edit->form();?>
-			</div>
-			<div class="col-md-8">
-				<?php $roll->form();?>
-			</div>
+	<div class="row">
+		<div class="col-md-3">
+			<?php $edit->form();?>
+		</div>
+		<div class="col-md-9">
+			<?php $roll->form();?>
 		</div>
 	</div>
 	<?php
