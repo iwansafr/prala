@@ -1,4 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+if(@$_GET['t']==md5('paska'))
+{
+	$heading_title = 'DU Paska Prala';
+	$status = '2';
+}else{
+	$heading_title = 'DU Pra Prala';
+	$status = '1';
+}
+if(empty($this->session->userdata(base_url().'_logged_in')) && ($status == 2))
+{
+	header('location: '.base_url('admin/login').'?redirect_to='.urlencode(base_url('home/prala/register?t=9555e0591eaf7478ef1ec0c2f4ab9ab8')));
+}
 if($is_prala || !empty($_GET['reg_id'])){
 	?>
 	<div class="container-fluid">
@@ -24,15 +36,7 @@ $this->zea->init('edit');
 $this->zea->setTable('prala');
 $this->zea->setId($id);
 $this->zea->setEditStatus(FALSE);
-if(@$_GET['t']==md5('paska'))
-{
-	$heading_title = 'DU Paska Prala';
-	$status = '2';
-}else{
-	$heading_title = 'DU Pra Prala';
-	$status = '1';
 
-}
 $this->zea->setHeading($heading_title);
 
 if(!empty(@intval($_GET['id'])))
