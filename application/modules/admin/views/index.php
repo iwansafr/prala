@@ -6,7 +6,7 @@ if(@$_SERVER['SERVER_NAME'] == 'localhost')
 {
 	$data['link_template'] = base_url().'templates/'.$template;
 }else{
-	$data['link_template'] = 'https://templates.esoftgreat.com/'.$template;
+	$data['link_template'] = 'https://templates.esoftgreat.com/'.$template.'-master';
 }
 $data['public_template'] = $this->esg->get_esg('templates')['public_template'];
 $data['admin_template'] = $template;
