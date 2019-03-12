@@ -11,7 +11,16 @@
 			</div>
 		</div>
 		<div class="login-content">
-			<a href="<?php echo base_url()?>">Register / Login</a>
+			<?php 
+			if(!empty($this->session->userdata(base_url().'_logged_in')))
+			{
+				echo '<i class="fa fa-user"></i> '.$this->session->userdata(base_url().'_logged_in')['username'];
+			}else{
+				?>
+				<a href="<?php echo base_url('admin/login')?>">Register / Login</a>
+				<?php
+			}
+			?>
 		</div>
 	</div>
 </div>
