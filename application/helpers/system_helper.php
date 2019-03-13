@@ -223,6 +223,20 @@ function is_root()
 	return $return;
 }
 
+function is_editor()
+{
+	$return = false;
+	$role   = @$_SESSION[base_url().'_logged_in']['level'];
+	if(!empty($role))
+	{
+		if($role==3)
+		{
+			$return = true;
+		}
+	}
+	return $return;
+}
+
 function output_json($array)
 {
 	$output = '{}';

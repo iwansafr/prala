@@ -9,7 +9,15 @@ class Admin_model extends CI_Model
 		$this->load->model('esg_model');
 		$this->load->library('esg');
 		// $this->load->library('ZEA/zea');
-		$this->sidebar_menu();
+		if(is_admin() || is_root())
+		{
+			$this->sidebar_menu();
+		}else if(is_editor())
+		{
+			$this->editor_menu();
+		}else{
+			$this->siswa_menu();
+		}
 		$this->site();
 	}
 
@@ -185,6 +193,206 @@ class Admin_model extends CI_Model
 		        'icon' => 'fa-pencil-alt',
 		        'link' => base_url('admin/prala/register')
 		      ),
+		      array(
+		        'title' => 'Data DU Pra Prala',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/list')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Daftar Ulang Paska Prala',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Tambah DU Paska Prala',
+		        'icon' => 'fa-pencil-alt',
+		        'link' => base_url('admin/prala/register?t='.md5('paska'))
+		      ),
+		      array(
+		        'title' => 'Data DU Paska Prala',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/list?t='.md5('paska'))
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Nautika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list?t=nautika')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Teknika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list?t=teknika')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'User',
+		    'icon' => 'fa-user',
+		    'link' => base_url('admin/user/list'),
+		    'list' => array(
+		      array(
+		        'title' => 'User List',
+		        'icon' => 'fa-dot-circle',
+		        'link' => base_url('admin/user/list')
+		      ),
+		      array(
+		        'title' => 'User Add',
+		        'icon' => 'fa-dot-circle',
+		        'link' => base_url('admin/user/edit')
+		      ),
+		      array(
+		        'title' => 'User Role',
+		        'icon' => 'fa-dot-circle',
+		        'link' => base_url('admin/user/role'),
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'data',
+		    'icon' => 'fa-database',
+		    'link' => base_url('admin/visitor'),
+		    'list' => array(
+		    	array(
+		        'title' => 'Visitor',
+		        'icon' => 'fa-chart-bar',
+		        'link' => base_url('admin/visitor')
+		      )
+		    )
+		  ),
+		  array(
+		    'title' => 'Configuration',
+		    'icon' => 'fa-cog',
+		    'link' => base_url('admin/config/'),
+		    'list' => array(
+		      array(
+		        'title' => 'logo',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/logo')
+		      ),
+		      array(
+		        'title' => 'site',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/site')
+		      ),
+		      array(
+		        'title' => 'templates',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/templates')
+		      ),
+		      array(
+		        'title' => 'contact',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/contact')
+		      ),
+		      array(
+		        'title' => 'style',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/style')
+		      ),
+		      array(
+		        'title' => 'script',
+		        'icon' => 'fa-cog',
+		        'link' => base_url('admin/config/script')
+		      ),
+		    )
+		  ),
+		);
+		$data['menu'] = $menu;
+		$this->esg->set_esg('sidebar_menu', $data['menu']);
+	}
+
+	public function editor_menu()
+	{
+		$data = array();
+		$menu = array(
+		  array(
+		    'title' => 'Dashboard',
+		    'icon' => 'fa-tachometer-alt',
+		    'link' => base_url('admin')
+		  ),
+		  array(
+		    'title' => 'Status Prala Nautika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Status Prala Nautika',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/pendidikan/list?t=nautika')
+		      )
+		    )
+		  ),
+		  array(
+		    'title' => 'Status Prala Teknika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Status Prala Teknika',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/pendidikan/list?t=teknika')
+		      )
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Nautika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list?t=nautika')
+		      ),
+		    )
+		  ),
+		  array(
+		    'title' => 'Laporan Prala Teknika',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/prala/'),
+		    'list' => array(
+		      array(
+		        'title' => 'Data Laporan Location',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/location_list?t=teknika')
+		      ),
+		    )
+		  ),
+		);
+		$data['menu'] = $menu;
+		$this->esg->set_esg('sidebar_menu', $data['menu']);
+	}
+
+	public function siswa_menu()
+	{
+		$data = array();
+		$menu = array(
+		  array(
+		    'title' => 'Dashboard',
+		    'icon' => 'fa-tachometer-alt',
+		    'link' => base_url('admin')
+		  ),
+		  array(
+		    'title' => 'Daftar Ulang Pra Prala',
+		    'icon' => 'fa-file-alt',
+		    'link' => base_url('admin/content/'),
+		    'list' => array(
 		      array(
 		        'title' => 'Data DU Pra Prala',
 		        'icon' => 'fa-list',
