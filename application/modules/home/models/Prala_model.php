@@ -158,6 +158,37 @@ class Prala_model extends CI_Model
 		    if(!empty($post))
 		    {
 		      $this->zea->set_data('prala', $last_id, $post);
+		    	if((@intval($_POST['status']) == 1) && (!empty($last_id)))
+		    	{
+		    		$this->db->order_by('id','DESC');
+		    		$this->db->select('id');
+		    		$siswa_role_id = $this->db->get_where('user_role','level = 5')->row_array();
+
+		    		if(!empty($siswa_role_id))
+		    		{
+			    		$pwd = substr(md5(time()),0,6);
+			    		$prala_user = array(
+			    			'prala_id' => $last_id,
+			    			'username' => $str,
+			    			'password' => $pwd,
+			    		);
+
+			    		$siswa_user = array(
+			    			'username'     => $str,
+			    			'password'     => encrypt($pwd),
+			    			'email'        => $str.'@esoftgreat.com',
+			    			'user_role_id' => $siswa_role_id['id'],
+			    			'active'       => '1',
+			    		);
+
+			    		$this->zea->set_data('prala_user', 0, $prala_user);
+			    		$this->zea->set_data('user', 0, $siswa_user);
+			    		// header('location : '.base_url('home/prala/account_information/?u='.$str.'&p='.$pwd));
+			    		redirect('home/prala/account_information/?u='.urlencode($str).'&p='.urlencode($pwd));
+		    		}else{
+			    		redirect('home/prala/account_information');
+		    		}
+		    	}
 		    }
 		  }
 		}

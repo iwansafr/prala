@@ -256,4 +256,5 @@ $this->zea->setCollapse('foto_3x4',TRUE);
 
 $this->zea->addInput('status','hidden');
 $this->zea->setValue('status',$status);
+$this->zea->setFormName('prala_register');
 $this->zea->form();

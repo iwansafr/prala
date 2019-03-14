@@ -19,6 +19,13 @@ class Prala extends CI_Controller
 		$data['is_prala'] = (@$_GET['t'] == md5('prala')) ? TRUE : FALSE;
 		$this->esg->set_esg('extra_js', base_url('templates/AdminLTE/assets/dist/js/modules/prala/script.js'));
 		$this->load->view('index', $data);
+		$this->prala_model->prala_save();
+	}
+
+	public function account_information()
+	{
+		$this->home_model->home();
+		$this->load->view('index');
 	}
 
 	public function pendidikan($view)

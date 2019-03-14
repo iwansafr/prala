@@ -242,10 +242,20 @@ class Esg extends CI_Model
 			{
 				foreach ($data as $key => $value)
 				{
-					echo '<script src="'.$value.'"></script>'."\n";
+					if(isLink($value))
+					{
+						echo '<script src="'.$value.'"></script>'."\n";
+					}else{
+						echo $value;
+					}
 				}
 			}else{
-				echo '<script src="'.$data.'"></script>'."\n";
+				if(isLink($data))
+				{
+					echo '<script src="'.$data.'"></script>'."\n";
+				}else{
+					echo $data;
+				}
 			}
 		}
 	}

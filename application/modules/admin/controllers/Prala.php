@@ -30,6 +30,7 @@ class Prala extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	
 	public function location_detail()
 	{
 		$data = array();
