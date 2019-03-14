@@ -22,6 +22,15 @@ class Home_model extends CI_Model
 		// $this->home();
 		// $this->js();
 		$this->get_visitor();
+		$this->user_login();
+	}
+
+	public function user_login()
+	{
+		if(!empty($this->session->userdata(base_url().'_logged_in')))
+		{
+			$this->esg->set_esg('user',$this->session->userdata(base_url().'_logged_in'));
+		}
 	}
 
 	public function mod()
