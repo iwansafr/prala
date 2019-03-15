@@ -32,7 +32,7 @@ if($is_prala || !empty($_GET['reg_id'])){
 	$data = $this->prala_model->get_prala(@$_GET['reg_id']);
 }
 $user = $this->esg->get_esg('user');
-if((!empty($user)) && ($user['level'] != 5) && ($status != 1))
+if((($user['level'] != 5) && ($status != 1)) || ((empty($user))) || (!empty($user) && $user['level'] < 5))
 {
 	$id = !empty($_GET['reg_id']) ? $data['id'] : @intval($_GET['id']);
 	$this->zea->init('edit');
