@@ -1120,6 +1120,9 @@ class Zea extends CI_Model
 										case 'plaintext':
 											include 'input/plaintext.php';
 											break;
+										case 'link':
+											include 'input/link.php';
+											break;	
 										case 'textarea':
 											include 'input/textarea.php';
 											break;
@@ -1508,6 +1511,12 @@ class Zea extends CI_Model
 								$_POST['password'] = encrypt($_POST['password']);
 							}
 						}
+						$post_secure = array();
+						foreach ($this->input as $key => $value) 
+						{
+							$post_secure[$value['text']] = @$_POST[$value['text']];
+						}
+						$_POST = $post_secure;
 						if(!empty($this->table))
 						{
 							$data['msg']   = 'Data Failed to Save';
