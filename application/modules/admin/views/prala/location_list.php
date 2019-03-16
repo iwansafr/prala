@@ -4,6 +4,11 @@ $status = @$t[$_GET['t']];
 
 if(!empty($status))
 {
+	$is_siswa_where = '';
+	if(@$user['level'] == 5)
+	{
+		$is_siswa_where = ' AND no_registration = "'.$user['username'].'" ';
+	}
 	$status_active = array('Off','On');
 	$form = new zea();
 	$form->init('roll');
@@ -11,7 +16,7 @@ if(!empty($status))
 	$form->search();
 	$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala.id,prala.no_registration AS reg_id,prala.nama,prala.kode_pelaut,prala_pendidikan.prodi_id,prala.nama_sekolah,prala.status_active');
 	$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
-	$form->setWhere(" {$delimeter} prala_pendidikan.prodi_id != '' AND prala_pendidikan.status= {$status} group by prala.id");
+	$form->setWhere(" {$delimeter} prala_pendidikan.prodi_id != '' {$is_siswa_where} AND prala_pendidikan.status= {$status} group by prala.id");
 	$form->setNumbering(TRUE);
 	$form->addInput('id','hidden');
 	$form->addInput('kode_pelaut','plaintext');

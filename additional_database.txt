@@ -1,1 +1,3 @@
 ALTER TABLE `prala` ADD `surat_mutasi_on` VARCHAR(255) NOT NULL AFTER `skl_ukp_prala`, ADD `surat_mutasi_off` VARCHAR(255) NOT NULL AFTER `surat_mutasi_on`, ADD `skml` VARCHAR(255) NOT NULL COMMENT 'surat keterangan masa layar' AFTER `surat_mutasi_off`;
+
+ALTER TABLE `prala_pendidikan` ADD `angkatan` VARCHAR(255) NOT NULL AFTER `prodi_id`, ADD `nis` VARCHAR(255) NOT NULL AFTER `angkatan`;

@@ -73,6 +73,10 @@ if((!empty($_GET['reg_id']) || !empty($_GET['id'])))
 				$form->setHeading($title.' Status Pendidikan');
 				$form->setEditStatus(FALSE);
 				$form->setId(@intval($_GET['id']));
+
+				$form->addInput('angkatan','text');
+				$form->addInput('nis','text');
+
 				$form->addInput('prodi_id','dropdown');
 				$form->setLabel('prodi_id','Program Studi');
 				$form->tableOptions('prodi_id','prodi','id','title');

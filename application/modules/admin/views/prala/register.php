@@ -7,7 +7,8 @@ if(@$_GET['t']==md5('paska'))
 	$heading_title = 'DU Pra Prala';
 	$status = '1';
 }
-if(empty($this->session->userdata(base_url().'_logged_in')) && ($status == 2))
+$user = $this->session->userdata(base_url().'_logged_in');
+if(empty($user) && ($status == 2))
 {
 	header('location: '.base_url('admin/login').'?redirect_to='.urlencode(base_url('home/prala/register?t=9555e0591eaf7478ef1ec0c2f4ab9ab8')));
 }
@@ -31,8 +32,7 @@ if($is_prala || !empty($_GET['reg_id'])){
 	<?php
 	$data = $this->prala_model->get_prala(@$_GET['reg_id']);
 }
-$user = $this->esg->get_esg('user');
-if((($user['level'] != 5) && ($status != 1)) || ((empty($user))) || (!empty($user) && $user['level'] < 5))
+if((($user['level'] != 5) || ($status != 1)) || ((empty($user))) || (!empty($user) && $user['level'] < 5))
 {
 	$id = !empty($_GET['reg_id']) ? $data['id'] : @intval($_GET['id']);
 	$this->zea->init('edit');

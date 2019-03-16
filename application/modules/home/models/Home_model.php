@@ -22,7 +22,7 @@ class Home_model extends CI_Model
 		// $this->home();
 		// $this->js();
 		$this->get_visitor();
-		$this->user_login();
+		// $this->user_login();
 	}
 
 	public function user_login()

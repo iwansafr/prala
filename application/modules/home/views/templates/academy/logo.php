@@ -14,10 +14,10 @@
 			<?php 
 			if(!empty($this->session->userdata(base_url().'_logged_in')))
 			{
-				echo '<i class="fa fa-user"></i> '.$this->session->userdata(base_url().'_logged_in')['username'];
+				echo '<i class="fa fa-user"></i> '.$this->session->userdata(base_url().'_logged_in')['username'].' || <a href="'.base_url('admin').'"><i class="fa fa-sign-in"></i> To Dashboard</a>';
 			}else{
 				?>
-				<a href="<?php echo base_url('admin/login')?>">Register / Login</a>
+				<!-- <a href="<?php echo base_url('admin/login')?>">Register / Login</a> -->
 				<?php
 			}
 			?>

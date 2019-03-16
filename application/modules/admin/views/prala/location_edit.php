@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(is_admin() || is_root())
+$id_month = @intval($_GET['id']).'_'.@intval($_GET['bulan']);
+$this->db->select('value');
+$is_exist = $this->db->get_where('prala_location_bulan',"name = 'location_{$id_month}'")->row_array();
+if(is_admin() || is_root() || ((@$_GET['r_id'] == $user['username']) && empty($is_exist)))
 {
 	$form = new zea();
 	$form->init('param');
@@ -39,4 +42,6 @@ if(is_admin() || is_root())
 	$form->setLabel('lampiran_kegiatan_harian_image', 'Lampiran Kegiatan Harian');
 
 	$form->form();
+}else{
+	echo msg('you dont have permission to access this site', 'danger');
 }

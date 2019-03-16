@@ -394,9 +394,9 @@ class Admin_model extends CI_Model
 		    'link' => base_url('admin/content/'),
 		    'list' => array(
 		      array(
-		        'title' => 'Data DU Pra Prala',
+		        'title' => 'Recap Data DU Pra Prala',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/list')
+		        'link' => base_url('admin/prala/recap')
 		      ),
 		    )
 		  ),
@@ -411,9 +411,9 @@ class Admin_model extends CI_Model
 		        'link' => base_url('admin/prala/register?t='.md5('paska'))
 		      ),
 		      array(
-		        'title' => 'Data DU Paska Prala',
+		        'title' => 'Recap Data DU Paska Prala',
 		        'icon' => 'fa-list',
-		        'link' => base_url('admin/prala/list?t='.md5('paska'))
+		        'link' => base_url('admin/prala/recap?t='.md5('paska'))
 		      ),
 		    )
 		  ),

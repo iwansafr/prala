@@ -10,6 +10,7 @@ if(!empty($field))
 	}else{
 		$data_value = $dvalue[$ikey];
 	}
+
 	if(empty($this->image[$field]))
 	{
 		$this->image[$field]['module'] = 'content';

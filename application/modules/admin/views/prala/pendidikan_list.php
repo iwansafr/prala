@@ -9,11 +9,13 @@ if(!empty($status))
 	$form->init('roll');
 	$form->setTable('prala_pendidikan');
 	$form->search();
-	$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala.id,prala.no_registration AS reg_id,prala.nama,prala.kode_pelaut,prala_pendidikan.prodi_id,prala.nama_sekolah');
+	$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala.id,prala.no_registration AS reg_id,prala.nama,prala.kode_pelaut,prala_pendidikan.angkatan,prala_pendidikan.nis,prala_pendidikan.prodi_id,prala.nama_sekolah');
 	$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
 	$form->setWhere(" {$delimeter} prala_pendidikan.prodi_id != '' AND prala_pendidikan.status = {$status} group by prala.id");
 	$form->setNumbering(TRUE);
 	// $form->addInput('id','hidden');
+	$form->addInput('angkatan','plaintext');
+	$form->addInput('nis','plaintext');
 	$form->addInput('kode_pelaut','plaintext');
 	$form->setLabel('kode_pelaut',' Kode Pelaut');
 	$form->addInput('nama','link');
