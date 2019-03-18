@@ -7,7 +7,6 @@ class Restore extends CI_Controller
 		parent::__construct();
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
-		$this->load->model('restore_model');
 		$this->load->library('esg');
 		$this->load->helper('file');
 		$this->load->library('ZEA/zea');
@@ -20,7 +19,6 @@ class Restore extends CI_Controller
 	}
 	public function data($title = '')
 	{
-		$this->restore_model->restore();
 		$this->load->view('index', array('title'=>$title));
 	}
 }
