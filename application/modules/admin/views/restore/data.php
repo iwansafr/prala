@@ -33,22 +33,13 @@ if(!empty($title))
 						$this->db->empty_table($esdkey);
 						foreach ($esdvalue as $esdvkey => $esdvvalue) 
 						{
-							if($esdkey == 'config')
-							{
-								$this->zea->set_param($esdkey, $esdvvalue['name'], $esdvvalue);
-								$data_message[] = 'insert to '.$esdkey.' Success';
-							}else{
-								$data_insert[] = ($esdvvalue);
-							}
+							$data_insert[] = $esdvvalue;
 						}
-						if($esdkey != 'config')
+						if(!empty($data_insert))
 						{
-							if(!empty($data_insert))
+							if($this->db->insert_batch($esdkey, $data_insert))
 							{
-								if($this->db->insert_batch($esdkey, $data_insert))
-								{
-									$data_message[] = 'insert to '.$esdkey.' Success';
-								}
+								$data_message[] = 'insert to '.$esdkey.' Success';
 							}
 						}
 					}
