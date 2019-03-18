@@ -56,6 +56,7 @@ if(!empty($title))
 					{
 						msg($dmvalue,'success');
 					}
+					unlink(FCPATH.'images/modules/data.esg');
 				}
 			}
 		}
