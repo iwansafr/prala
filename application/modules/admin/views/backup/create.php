@@ -12,7 +12,7 @@ if(!empty($key))
 			$module = end($module);
 			if($module != 'backup')
 			{
-				$this->zip->read_dir($value);
+				$this->zip->read_dir($value, FALSE);
 			}
 		}
 		$table = array('config','comment','content','content_cat','content_tag','menu','menu_position','message','prala','prala_location','prala_location_bulan','prala_pendidikan','prala_user','prodi','user','user_login','user_role');
