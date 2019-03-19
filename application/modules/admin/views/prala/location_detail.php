@@ -89,7 +89,7 @@ if(is_root() || is_admin() || is_editor()|| (@$_GET['reg_id'] == $user['username
 				<div class="col-md-4">
 					<div class="box">
 						<div class="box-header">
-							<?php if (empty($data) || is_admin() || is_root() || is_editor()): ?>
+							<?php if ((empty($data) || is_admin() || is_root()) && !is_editor()): ?>
 								<a href="<?php echo base_url('admin/prala/location_edit/?id=').$prala_location['location']['id'].'&bulan='.$i.'&r_id='.$_GET['reg_id'];?>" class="btn btn-default btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
 							<?php endif ?>
 						</div>

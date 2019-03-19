@@ -2,7 +2,7 @@
 $id_month = @intval($_GET['id']).'_'.@intval($_GET['bulan']);
 $this->db->select('value');
 $is_exist = $this->db->get_where('prala_location_bulan',"name = 'location_{$id_month}'")->row_array();
-if(is_admin() || is_root() || is_editor() || ((@$_GET['r_id'] == $user['username']) && empty($is_exist)))
+if(is_admin() || is_root() || ((@$_GET['r_id'] == $user['username']) && empty($is_exist)))
 {
 	$form = new zea();
 	$form->init('param');
