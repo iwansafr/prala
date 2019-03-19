@@ -198,6 +198,11 @@ class Admin_model extends CI_Model
 		        'icon' => 'fa-list',
 		        'link' => base_url('admin/prala/list')
 		      ),
+		      array(
+		        'title' => 'DU Prala Account',
+		        'icon' => 'fa-list',
+		        'link' => base_url('admin/prala/prala_account')
+		      ),
 		    )
 		  ),
 		  array(

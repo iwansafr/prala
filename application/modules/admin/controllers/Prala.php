@@ -99,6 +99,11 @@ class Prala extends CI_Controller
 		}
 	}
 
+	public function prala_account()
+	{
+		$this->load->view('index');
+	}
+
 	public function prodi()
 	{
 		$this->load->view('index');
