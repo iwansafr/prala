@@ -284,6 +284,7 @@ if((($user['level'] != 5) || ($status != 1)) || ((empty($user))) || (!empty($use
 	{
 		$this->zea->setSave(FALSE);
 	}
+	$this->zea->setUnique(array('kode_pelaut'));
 	$this->zea->form();
 
 	if($status == 2)
