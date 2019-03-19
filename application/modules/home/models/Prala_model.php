@@ -169,7 +169,7 @@ class Prala_model extends CI_Model
 		    if(!empty($post))
 		    {
 		      $this->zea->set_data('prala', $last_id, $post);
-		    	if((@intval($_POST['status']) == 1) && (!empty($last_id)))
+		    	if((@intval($_POST['status']) == 1) && (!empty($last_id)) && (empty($id)))
 		    	{
 		    		$this->db->order_by('id','DESC');
 		    		$this->db->select('id');
