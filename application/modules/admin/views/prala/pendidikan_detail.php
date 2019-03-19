@@ -70,7 +70,7 @@ if(!empty($data))
 		$form->join('prala','ON(prala.id=prala_pendidikan.prala_id)','prala_pendidikan.id,prala.no_registration AS reg_id,prala_pendidikan.masuk,prala_pendidikan.nama_kapal,prala_pendidikan.nama_perusahaan,prala_pendidikan.sign_off,prala_pendidikan.sign_on,prala_pendidikan.sib,prala_pendidikan.du_paska,prala_pendidikan.keterangan');
 		$delimeter = !empty($_GET['keyword']) ? 'AND' : '';
 		$form->setWhere(' '.$delimeter.' prala_id = '.@intval($data['id']).' AND prala_pendidikan.status= '.@intval($status));
-		$form->search();
+		// $form->search();
 		$form->addInput('id','hidden');
 
 		$form->addInput('masuk','plaintext');
