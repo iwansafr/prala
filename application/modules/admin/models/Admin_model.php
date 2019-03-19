@@ -200,7 +200,7 @@ class Admin_model extends CI_Model
 		      ),
 		      array(
 		        'title' => 'DU Prala Account',
-		        'icon' => 'fa-list',
+		        'icon' => 'fa-user-secret',
 		        'link' => base_url('admin/prala/prala_account')
 		      ),
 		    )
