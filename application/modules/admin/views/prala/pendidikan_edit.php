@@ -24,6 +24,8 @@ if((!empty($_GET['reg_id']) || !empty($_GET['id'])))
 {
 	if(!empty($data))
 	{
+		$foto_3x4 = @json_decode($data['foto_3x4']);
+		$foto_3x4 = $foto_3x4[0];
 		?>
 		<div class="panel panel-default">
 			<div class="panel panel-heading">
@@ -34,7 +36,7 @@ if((!empty($_GET['reg_id']) || !empty($_GET['id'])))
 			<div class="panel panel-body">
 				<div class="form-group">
 					<label>Foto Siswa</label>
-					<img src="<?php echo image_module('prala', 'gallery/'.$data['id'].'/'.$data['foto_3x4']) ?>" class="img-responsive" width="120" height="160">
+					<img src="<?php echo image_module('prala', 'gallery/'.$data['id'].'/'.$foto_3x4) ?>" class="img-responsive" width="120" height="160">
 				</div>
 				<?php 
 				$show = array('kode_pelaut','nama','tempat_lahir','tgl_lahir','kelamin');

@@ -1668,10 +1668,10 @@ class Zea extends CI_Model
 													}
 												}
 											}else{
-												foreach (glob($dir.'*.*') as $image_link)
-												{
-													unlink($image_link);
-												}
+												// foreach (glob($dir.'*.*') as $image_link)
+												// {
+												// 	unlink($image_link);
+												// }
 											}
 											$i++;
 										}
