@@ -17,11 +17,9 @@ class Prala_model extends CI_Model
 			foreach ($data as $key => $id)
       {
       	$username = $this->db->get_where('prala_user', ['prala_id'=>$id])->row_array();
-      	pr($username);
       	$username = @$username['username'];
       	if(!empty($username))
       	{
-      		pr($username);
 	        $this->db->delete('user', array('username'=>$username));
       	}
         $this->db->delete('prala_user', array('prala_id'=>$id));
