@@ -1,3 +1,6 @@
 ALTER TABLE `prala` ADD `surat_mutasi_on` VARCHAR(255) NOT NULL AFTER `skl_ukp_prala`, ADD `surat_mutasi_off` VARCHAR(255) NOT NULL AFTER `surat_mutasi_on`, ADD `skml` VARCHAR(255) NOT NULL COMMENT 'surat keterangan masa layar' AFTER `surat_mutasi_off`;
 
 ALTER TABLE `prala_pendidikan` ADD `angkatan` VARCHAR(255) NOT NULL AFTER `prodi_id`, ADD `nis` VARCHAR(255) NOT NULL AFTER `angkatan`;
+
+ALTER TABLE `prala` CHANGE `foto_3x4` `foto_4x6` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `prala` ADD `bstp` VARCHAR(255) NOT NULL COMMENT 'Buku Saku Taruna Prala' AFTER `skml`, ADD `ship_particular` VARCHAR(255) NOT NULL AFTER `bstp`, ADD `crew_list` VARCHAR(255) NOT NULL AFTER `ship_particular`, ADD `kondite_prala` VARCHAR(255) NOT NULL AFTER `crew_list`, ADD `nukkp` VARCHAR(255) NOT NULL COMMENT 'Nilai Ujian Kertas Kerja Prala' AFTER `kondite_prala`;

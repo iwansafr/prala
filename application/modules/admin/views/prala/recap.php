@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(!empty($recap))
 {
-	$foto = json_decode($recap['foto_3x4'],true);
+	$foto = json_decode($recap['foto_4x6'],true);
 	$foto = $foto[0];
 	$kelamin = array('Perempuan','Laki-laki');
 	$pendidikan = $this->prala_model->get_pendidikan($recap['id']);
@@ -141,7 +141,7 @@ if(!empty($recap))
 								<td><?php echo $pendidikan['nama_perusahaan'] ?></td>
 							</tr>
 							<?php 
-							$doc = array('kk','ktp','ijasah_smk','akte_kelahiran','skpl','sert_bst','sert_aff','sert_mefa','sert_simulator_nautika','sert_radar','sert_arpa','bukti_pembayaran','surat_orang_tua','surat_pengantar_sekolah','sib','sert_watchkeeping','asuransi','buku_pelaut','ism_code','skl_ukp_prala');
+							$doc = array('kk','ktp','ijasah_smk','akte_kelahiran','skpl','sert_bst','sert_aff','sert_mefa','sert_simulator_nautika','sert_radar','sert_arpa','bukti_pembayaran','surat_orang_tua','surat_pengantar_sekolah','sib','sert_watchkeeping','asuransi','buku_pelaut','ism_code','skl_ukp_prala','bstp','ship_particular','crew_list','kondite_prala','nukkp');
 							foreach ($doc as $key => $value) 
 							{
 								$imgs = json_decode($recap[$value], TRUE);

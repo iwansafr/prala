@@ -168,10 +168,10 @@ if((($user['level'] != 5) || ($status != 1)) || ((empty($user))) || (!empty($use
 
 		$this->zea->setAttribute('prodi_id','readonly');
 	}
-	$this->zea->addInput('foto_3x4','gallery');
-	$this->zea->setAccept('foto_3x4', '.jpg,.jpeg,.png');
-	$this->zea->setAttribute('foto_3x4', $gallery_attr);
-	$this->zea->setLabel('foto_3x4','Foto 3x4');
+	$this->zea->addInput('foto_4x6','gallery');
+	$this->zea->setAccept('foto_4x6', '.jpg,.jpeg,.png');
+	$this->zea->setAttribute('foto_4x6', $gallery_attr);
+	$this->zea->setLabel('foto_4x6','Foto 4x6');
 
 	$this->zea->addInput('ktp','gallery');
 	$this->zea->setAccept('ktp', '.jpg,.jpeg,.png');
@@ -273,9 +273,9 @@ if((($user['level'] != 5) || ($status != 1)) || ((empty($user))) || (!empty($use
 	$this->zea->setAccept('sert_watchkeeping', '.jpg,.jpeg,.png');
 	$this->zea->setAttribute('sert_watchkeeping',$gallery_attr);
 
-	$this->zea->startCollapse('foto_3x4','Upload Dokumen');
+	$this->zea->startCollapse('foto_4x6','Upload Dokumen');
 	$this->zea->endCollapse('sert_watchkeeping');
-	$this->zea->setCollapse('foto_3x4',TRUE);
+	$this->zea->setCollapse('foto_4x6',TRUE);
 
 	$this->zea->addInput('status','hidden');
 	$this->zea->setValue('status',$status);
@@ -312,6 +312,33 @@ if((($user['level'] != 5) || ($status != 1)) || ((empty($user))) || (!empty($use
 		$form->addInput('status','hidden');
 		$form->setValue('status',$status);
 		$form->setAttribute('skml','multiple');	
+
+
+		$form->addInput('bstp','gallery');
+		$form->setLabel('bstp','Buku Saku Taruna Prala');
+		$form->setAccept('bstp', '.jpg,.jpeg,.png');
+		$form->setAttribute('bstp','multiple');	
+
+		$form->addInput('ship_particular','gallery');
+		$form->setLabel('ship_particular','Ship Particular');
+		$form->setAccept('ship_particular', '.jpg,.jpeg,.png');
+		$form->setAttribute('ship_particular','multiple');	
+
+		$form->addInput('crew_list','gallery');
+		$form->setLabel('crew_list','Crew List');
+		$form->setAccept('crew_list', '.jpg,.jpeg,.png');
+		$form->setAttribute('crew_list','multiple');	
+
+		$form->addInput('kondite_prala','gallery');
+		$form->setLabel('kondite_prala','Kondite Prala');
+		$form->setAccept('kondite_prala', '.jpg,.jpeg,.png');
+		$form->setAttribute('kondite_prala','multiple');	
+
+		$form->addInput('nukkp','gallery');
+		$form->setLabel('nukkp','Nilai Ujian Kertas Kerja Prala');
+		$form->setAccept('nukkp', '.jpg,.jpeg,.png');
+		$form->setAttribute('nukkp','multiple');	
+
 		$form->setFormName('paska_form');
 		$form->form();
 	}

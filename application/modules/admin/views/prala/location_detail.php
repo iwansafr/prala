@@ -2,7 +2,7 @@
 $user = $this->session->userdata(base_url().'_logged_in');
 if(is_root() || is_admin() || is_editor() || (@$_GET['reg_id'] == $user['username']))
 {
-	$foto = json_decode($data['foto_3x4'],true);
+	$foto = json_decode($data['foto_4x6'],true);
 	$foto = $foto[0];
 	$kelamin = array('Perempuan','Laki-laki');
 	$pendidikan = $this->prala_model->get_pendidikan($data['id']);

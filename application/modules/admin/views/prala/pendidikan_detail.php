@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 if(!empty($data))
 {
-	$foto = json_decode($data['foto_3x4'],true);
+	$foto = json_decode($data['foto_4x6'],true);
 	$foto = $foto[0];
 	$kelamin = array('Perempuan','Laki-laki');
 	$pendidikan = $this->prala_model->get_pendidikan($data['id']);
