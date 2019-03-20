@@ -41,6 +41,8 @@ if(is_admin() || is_root() || ((@$_GET['r_id'] == $user['username']) && empty($i
 	$form->setAccept('lampiran_kegiatan_harian_image', '.doc,.docx');
 	$form->setLabel('lampiran_kegiatan_harian_image', 'Lampiran Kegiatan Harian');
 
+	$form->setRequired('All');
+
 	$form->form();
 }else{
 	echo msg('you dont have permission to access this site', 'danger');

@@ -20,7 +20,7 @@ class Prala_model extends CI_Model
 		return $data;	
 	}
 
-	public function get_pendidikan($prala_id)
+	public function get_pendidikan($prala_id = 0)
 	{
 		$data = array();
 		if(!empty($prala_id))
@@ -30,13 +30,13 @@ class Prala_model extends CI_Model
 		return $data;
 	}
 
-	public function get_prala_location($pendidikan_id)
+	public function get_prala_location($pendidikan_id = 0)
 	{
 		$data = array();
 		if(!empty($pendidikan_id))
 		{
 			$data['location'] = $this->db->query('SELECT * FROM prala_location WHERE prala_pendidikan_id = ? ORDER BY id DESC LIMIT 1', $pendidikan_id)->row_array();
-			if(empty($data))
+			if(empty($data['location']))
 			{
 				$insert = array(
 					'prala_pendidikan_id' => $pendidikan_id
