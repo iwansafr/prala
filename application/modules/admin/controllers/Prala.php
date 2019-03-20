@@ -119,6 +119,10 @@ class Prala extends CI_Controller
 	public function list()
 	{
 		$data['is_paska'] = (@$_GET['t'] == md5('paska')) ? TRUE : FALSE;
+		if(!empty($_POST['del_row']))
+		{
+			$this->prala_model->delete_prala($_POST['del_row']);
+		}
 		$this->load->view('index', $data);
 	}
 	public function list_report()

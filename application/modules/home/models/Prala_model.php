@@ -10,6 +10,26 @@ class Prala_model extends CI_Model
 		$this->load->model('esg_model');
 	}
 	
+	public function delete_prala($data = array())
+	{
+		if(!empty($data))
+		{
+			foreach ($data as $key => $id)
+      {
+      	$username = $this->db->get_where('prala_user', ['prala_id'=>$id])->row_array();
+      	pr($username);
+      	$username = @$username['username'];
+      	if(!empty($username))
+      	{
+      		pr($username);
+	        $this->db->delete('user', array('username'=>$username));
+      	}
+        $this->db->delete('prala_user', array('prala_id'=>$id));
+      }
+		}
+	}
+
+
 	public function get_prodi($id)
 	{
 		$data = array();
