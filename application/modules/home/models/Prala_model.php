@@ -64,13 +64,18 @@ class Prala_model extends CI_Model
 		return $data;
 	}
 
-	public function get_recap()
+	public function get_recap($id = 0)
 	{
-		$user = $this->session->userdata(base_url().'_logged_in');
-		$data = array();
-		if(!empty($user))
+		if(!empty($id))
 		{
-			$data = $this->db->get_where('prala', "no_registration = '{$user['username']}'")->row_array();
+			$data = $this->db->get_where('prala', ['id'=>$id])->row_array();
+		}else{
+			$user = $this->session->userdata(base_url().'_logged_in');
+			$data = array();
+			if(!empty($user))
+			{
+				$data = $this->db->get_where('prala', "no_registration = '{$user['username']}'")->row_array();
+			}
 		}
 		return $data;
 	}

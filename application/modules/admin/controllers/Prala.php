@@ -76,10 +76,11 @@ class Prala extends CI_Controller
 		$this->prala_model->prala_save();
 	}
 
-	public function recap()
+	public function recap($id = 0)
 	{
 		$data['provinces'] = $this->prala_model->provinces();
-		$data['recap'] = $this->prala_model->get_recap();
+		$id = (is_admin() || is_root() || is_editor()) ? $id : 0;
+		$data['recap'] = $this->prala_model->get_recap($id);
 		// $this->esg->set_esg('extra_js', base_url('templates/AdminLTE/assets/dist/js/modules/prala/recap.js'));
 		$this->load->view('index', $data);
 	}

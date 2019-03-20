@@ -9,7 +9,15 @@ $this->zea->setHeading('Daftar Pendaftar Ujian <a href="'.base_url('admin/prala/
 $this->zea->addInput('id','plaintext');
 $this->zea->addInput('kode_pelaut','plaintext');
 $this->zea->setLabel('kode_pelaut','Kode Pelaut');
-$this->zea->addInput('nama','plaintext');
+
+if(is_admin() || is_root() || is_editor())
+{
+	$this->zea->addInput('nama','link');
+	$this->zea->setLink('nama',base_url('admin/prala/recap'),'id');
+	$this->zea->setClearGet('nama');
+}else{
+	$this->zea->addInput('nama','plaintext');
+}
 $this->zea->setLabel('nama','Nama Lengkap');
 $this->zea->addInput('kewarganegaraan','plaintext');
 $this->zea->setLabel('kewarganegaraan','kewarganegaraan');
