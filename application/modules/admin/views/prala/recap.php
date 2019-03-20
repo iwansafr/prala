@@ -7,6 +7,12 @@ if(!empty($recap))
 	$pendidikan = $this->prala_model->get_pendidikan($recap['id']);
 	$prodi = $this->prala_model->get_prodi($pendidikan['prodi_id']);
 	$prala_location = $this->prala_model->get_prala_location($pendidikan['id']);
+	if(is_root() || is_admin() || is_editor())
+	{
+		$index = $recap['id'];
+	}else{
+		$index = @$user['username'];
+	}
 	if(!empty(@$_GET['t']=='pdf'))
 	{
 		// header("Content-type:application/pdf; charset=utf-8");
@@ -24,7 +30,10 @@ if(!empty($recap))
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			profile
-			<a href="<?php echo base_url('admin/prala/recap_detail?reg_id='.@($user['username']).'&t=excel')?>" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i></a><a href="<?php echo base_url('admin/prala/recap_detail?reg_id='.@($user['username']).'&t=pdf')?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-print"></i> / <i class="fa fa-file-pdf-o"></i></a>
+			<a href="<?php echo base_url('admin/prala/recap_detail?reg_id='.@($index).'&t=excel')?>" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i></a><a href="<?php echo base_url('admin/prala/recap_detail?reg_id='.@($index).'&t=pdf')?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-print"></i> / <i class="fa fa-file-pdf-o"></i></a>
+			<?php if (!empty($_GET['t'])): ?>
+				<?php echo ' '.$recap['nama'] ?>
+			<?php endif ?>
 		</div>
 		<div class="panel-body">
 			<div class="col-md-2">

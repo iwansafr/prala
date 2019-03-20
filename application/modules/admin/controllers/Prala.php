@@ -88,7 +88,8 @@ class Prala extends CI_Controller
 	public function recap_detail()
 	{
 		$data['provinces'] = $this->prala_model->provinces();
-		$data['recap'] = $this->prala_model->get_recap();
+		$id = (is_admin() || is_root() || is_editor()) ? @$_GET['reg_id'] : 0;
+		$data['recap'] = $this->prala_model->get_recap($id);
 		$this->load->view('prala/recap', $data);
 		if(@$_GET['t'] == 'pdf')
 		{
