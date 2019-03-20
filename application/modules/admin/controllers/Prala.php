@@ -12,7 +12,7 @@ class Prala extends CI_Controller
 		$this->esg_model->init();
 	}
 
-	public function pendidikan($view)
+	public function pendidikan($view = '')
 	{
 		$data = array();
 		if(!empty($_GET['reg_id']))
