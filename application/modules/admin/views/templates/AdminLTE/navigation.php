@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $navigation = $this->esg->get_esg('navigation');
+$length_nav = count($navigation['array'])-1;
 $title = end($navigation['array']);
 $title = $title == 'admin' ? 'home' : $title;
 ?>
@@ -15,9 +16,11 @@ $title = $title == 'admin' ? 'home' : $title;
 		foreach ($navigation['array'] as $key => $value)
 		{
 			$url .= '/'.$value;
-			if($key > 0)
+			if($key < $length_nav)
 			{
 				echo '<li><a href="'.base_url($url).'">'.$value.'</a></li>';
+			}else{
+				echo '<li>'.$value.'</li>';
 			}
 		}
 	}

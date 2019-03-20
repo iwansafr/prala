@@ -69,6 +69,10 @@ class Prala_model extends CI_Model
 		if(!empty($id))
 		{
 			$data = $this->db->get_where('prala', ['id'=>$id])->row_array();
+			$navigation = $this->esg->get_esg('navigation');
+			$length_nav = count($navigation['array'])-1;
+			$navigation['array'][$length_nav] = $data['no_registration'];
+			$this->esg->set_esg('navigation', $navigation);
 		}else{
 			$user = $this->session->userdata(base_url().'_logged_in');
 			$data = array();
