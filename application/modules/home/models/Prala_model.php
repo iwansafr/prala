@@ -99,6 +99,42 @@ class Prala_model extends CI_Model
 				$data = $this->db->get_where('prala', "no_registration = '{$user['username']}'")->row_array();
 			}
 		}
+		if(!empty($data))
+		{
+			foreach ($data as $key => $value) 
+			{
+				switch ($key) {
+					case 'kecamatan':
+						$tmp_key = $this->db->query('SELECT name FROM districts WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;
+					case 'kabupaten':
+						$tmp_key = $this->db->query('SELECT name FROM regencies WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;
+					case 'provinsi':
+						$tmp_key = $this->db->query('SELECT name FROM provinces WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;	
+					case 'kecamatan_sekolah':
+						$tmp_key = $this->db->query('SELECT name FROM districts WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;
+					case 'kabupaten_sekolah':
+						$tmp_key = $this->db->query('SELECT name FROM regencies WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;
+					case 'provinsi_sekolah':
+						$tmp_key = $this->db->query('SELECT name FROM provinces WHERE id = ? LIMIT 1',$value)->row_array();
+						$data[$key] = $tmp_key['name'];
+						break;		
+					
+					default:
+						
+						break;
+				}
+			}
+		}
 		return $data;
 	}
 
