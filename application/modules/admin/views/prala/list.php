@@ -31,7 +31,6 @@ if(!empty($is_paska)){
 	$this->zea->setWhere('status = 2');
 	$this->zea->setEditLink(base_url('admin/prala/register?t='.@$_GET['t'].'&id='));
 }else{
-	$this->zea->setWhere('status = 1');
+	// $this->zea->setWhere('status = 1');
 }
-
 $this->zea->form();
