@@ -28,14 +28,7 @@ if(!empty($data))
 									<td>Nama Lengkap</td>
 									<td><?php echo $data['nama'] ?></td>
 								</tr>
-								<tr>
-									<td>Tempat Lahir</td>
-									<td><?php echo $data['tempat_lahir'] ?></td>
-								</tr>
-								<tr>
-									<td>Tanggal Lahir</td>
-									<td><?php echo $data['tgl_lahir'] ?></td>
-								</tr>
+								
 								<tr>
 									<td>Asal Sekolah</td>
 									<td><?php echo $data['nama_sekolah'] ?></td>
